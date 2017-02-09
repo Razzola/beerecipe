@@ -243,38 +243,36 @@
                           </tr>
                         </thead>
 
-						<?php
 						
-							// TODO iterate all element
-							
+
 						
-						?>
 						
                         <tbody>
-                          <tr class="even pointer">
+							<?php
+							
+								// TODO iterate all element
+								$result = $mysqli->query("SELECT * FROM `ingredients`");
+								$row = $result->fetch_row();
+								$pair = false;
+								while ( $row != null ) {
+							?>
+                          <tr class="<?php $pair ? 'even' : 'odd'; ?> pointer">
                             <td class="a-center ">
                               <input type="checkbox" class="flat" name="table_records">
                             </td>
-                            <td class=" ">0</td>
-                            <td class=" ">NAME </td>
-                            <td class=" ">DESCRIPTION </td>
+                            <td class=" "><?php echo $row[0]; ?></td>
+                            <td class=" "><?php echo $row[1]; ?> </td>
+                            <td class=" "><?php echo $row[2]; ?> </td>
                             <td class=" last">
-								<a href="#">View</a> | <a href="#">Delete</a>
+								<a href="#<?php echo $row[0]; ?>">Edit</a> | <a href="#<?php echo $row[0]; ?>">Delete</a>
                             </td>
                           </tr>
-						  <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">0</td>
-                            <td class=" ">NAME </td>
-                            <td class=" ">DESCRIPTION </td>
-                            <td class=" last">
-								<a href="#">View</a> | <a href="#">Delete</a>
-                            </td>
-                          </tr>
-                          </tr>
-                          
+							<?php		
+									$row = $result->fetch_row();				
+									$pair = !$pair;
+								}
+							
+							?>
                         </tbody>
                       </table>
                     </div>
