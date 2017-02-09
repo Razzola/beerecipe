@@ -54,7 +54,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Beerecipe</span></a>
+              <a href="home.php" class="site_title"><i class="fa fa-paw"></i> <span>Beerecipe</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -67,101 +67,9 @@
             <br />
 
             <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <h3>Database</h3>
-                <ul class="nav side-menu">
-                  <li>
-					<a>
-						<i class="fa fa-database"></i>
-						Ingredients
-						<span class="fa fa-chevron-down"></span>
-					</a>
-                    <ul class="nav child_menu">
-                      <li>
-						<a href="index.html">
-							Create
-						</a>
-					  </li>
-                      <li>
-						<a href="index.html">
-							Update
-						</a>
-					  </li>
-                      <li>
-						<a href="index.html">
-							Delete
-						</a>
-					  </li>
-                      <li>
-						<a href="index.html">
-							View
-						</a>
-					  </li>
-                    </ul>
-                  </li>
-                  <li>
-					<a>
-						<i class="fa fa-database"></i>
-						Products
-						<span class="fa fa-chevron-down"></span>
-					</a>
-                    <ul class="nav child_menu">
-                      <li>
-						<a href="index.html">
-							Create
-						</a>
-					  </li>
-                      <li>
-						<a href="index.html">
-							Update
-						</a>
-					  </li>
-                      <li>
-						<a href="index.html">
-							Delete
-						</a>
-					  </li>
-                      <li>
-						<a href="index.html">
-							View
-						</a>
-					  </li>
-                    </ul>
-                  </li>
-                  <li>
-					<a>
-						<i class="fa fa-database"></i>
-						Recipes
-						<span class="fa fa-chevron-down"></span>
-					</a>
-                    <ul class="nav child_menu">
-                      <li>
-						<a href="index.html">
-							Create
-						</a>
-					  </li>
-                      <li>
-						<a href="index.html">
-							Update
-						</a>
-					  </li>
-                      <li>
-						<a href="index.html">
-							Delete
-						</a>
-					  </li>
-                      <li>
-						<a href="index.html">
-							View
-						</a>
-					  </li>
-                    </ul>
-                  </li>
-				  
-                </ul>
-              </div>
-            </div>
+            <?php
+				require "menu.php";
+			?>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
