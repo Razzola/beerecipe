@@ -1,7 +1,23 @@
 <!DOCTYPE html>
 
 <?php
+
 	$mysqli = new mysqli("localhost", "root", "", "beerecipe");
+
+	if ( isset($_POST["name"]) and isset($_POST["desc"]) ) {
+		$name = $_POST["name"];
+		$desc = $_POST["desc"];
+		$uid = $_POST["uid"];
+		// TODO Check uid, determinate if it's update action or not
+		
+		if ( $uid != "null" ) {
+			$mysqli->query("UPDATE `ingredients` SET name='$name', description='$desc' WHERE uid=$uid");
+		} else {
+			$mysqli->query("INSERT INTO `ingredients` ( uid, name, description ) VALUES ( $uid, '$name', '$desc' )");
+		}
+		unset($_POST["name"]);
+		unset($_POST["desc"]);
+	}
 
 	$result = $mysqli->query("SELECT COUNT(*) FROM `ingredients`");
 	$row = $result->fetch_row();
@@ -106,64 +122,6 @@
                     <i class="fa fa-envelope-o"></i>
                     <span class="badge bg-green">-</span>
                   </a>
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
                 </li>
               </ul>
             </nav>
@@ -219,20 +177,37 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-
+                    
+					<?php
+						$uid = "null";
+						$found = array();
+						if ( isset($_GET["edit"]) ) {
+							$uid = $_GET["edit"];
+							
+							
+							$result = $mysqli->query("SELECT name, description FROM `ingredients` WHERE uid=$uid");
+							$row = $result->fetch_row();
+							$found = $row;
+						} else {
+							$found[0] = "";
+							$found[1] = "";
+						}
+					?>
+					
+					<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="ingredient_insert.php" method="POST">
+					<input type="hidden" name="uid" id="uid" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $uid; ?>">
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Name <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" name="name" id="name" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $found[0]; ?>">
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Description <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="last-name" name="desc" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $found[1]; ?>">
                         </div>
                       </div>
                       

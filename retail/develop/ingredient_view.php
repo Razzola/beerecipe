@@ -106,64 +106,6 @@
                     <i class="fa fa-envelope-o"></i>
                     <span class="badge bg-green">-</span>
                   </a>
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
                 </li>
               </ul>
             </nav>
@@ -244,9 +186,6 @@
                         </thead>
 
 						
-
-						
-						
                         <tbody>
 							<?php
 							
@@ -264,7 +203,8 @@
                             <td class=" "><?php echo $row[1]; ?> </td>
                             <td class=" "><?php echo $row[2]; ?> </td>
                             <td class=" last">
-								<a href="#<?php echo $row[0]; ?>">Edit</a> | <a href="#<?php echo $row[0]; ?>">Delete</a>
+								<a href="ingredient_insert.php?edit=<?php echo $row[0]; ?>">Edit</a>
+								| <a href="delete.php?path=ingredient_view.php&table=ingredients&delete=<?php echo $row[0]; ?>">Delete</a>
                             </td>
                           </tr>
 							<?php		
