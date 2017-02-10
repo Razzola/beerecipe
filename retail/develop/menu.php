@@ -30,7 +30,7 @@
 					</a>
                     <ul class="nav child_menu">
                       <li>
-						<a href="product_create.php">
+						<a href="product_insert.php">
 							Create
 						</a>
 					  </li>

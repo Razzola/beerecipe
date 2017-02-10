@@ -4,20 +4,25 @@
 
 	$mysqli = new mysqli("localhost", "root", "", "beerecipe");
 
-	if ( isset($_POST["name"]) and isset($_POST["desc"]) ) {
+	if ( isset($_POST["name"]) and isset($_POST["desc"]) and isset($_POST["price"]) and isset($_POST["reference"]) ) {
 		$name = $_POST["name"];
 		$desc = $_POST["desc"];
 		$uid = $_POST["uid"];
+		$price = $_POST["price"];
+		$reference = $_POST["reference"];
+		
 		// TODO Check uid, determinate if it's update action or not
 		
 		if ( $uid != "null" ) {
-			$mysqli->query("UPDATE `ingredients` SET name='$name', description='$desc' WHERE uid=$uid");
+			$mysqli->query("UPDATE `products` SET name='$name', description='$desc', price='$price', ingredients_uid='$reference' WHERE uid=$uid");
 		} else {
-			$mysqli->query("INSERT INTO `ingredients` ( uid, name, description ) VALUES ( $uid, '$name', '$desc' )");
+			$mysqli->query("INSERT INTO `products` ( uid, name, description, price, ingredients_uid ) VALUES ( $uid, '$name', '$desc', '$price', '$reference' )") or die ( $mysqli->error );
 		}
 		unset($_POST["uid"]);
 		unset($_POST["name"]);
 		unset($_POST["desc"]);
+		unset($_POST["price"]);
+		unset($_POST["reference"]);
 	}
 
 	$result = $mysqli->query("SELECT COUNT(*) FROM `ingredients`");
@@ -186,16 +191,19 @@
 							$uid = $_GET["edit"];
 							
 							
-							$result = $mysqli->query("SELECT name, description FROM `ingredients` WHERE uid=$uid");
+							$result = $mysqli->query("SELECT name, description, price, ingredients_uid FROM `products` WHERE uid='$uid'") or die($mysqli->error);
 							$row = $result->fetch_row();
 							$found = $row;
 						} else {
 							$found[0] = "";
 							$found[1] = "";
+							$found[2] = "";
+							$found[3] = "";
+							$found[4] = "";
 						}
 					?>
 					
-					<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="ingredient_insert.php" method="POST">
+					<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="product_insert.php" method="POST">
 					<input type="hidden" name="uid" id="uid" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $uid; ?>">
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
@@ -209,6 +217,36 @@
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="last-name" name="desc" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $found[1]; ?>">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Price <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="price" name="price" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $found[2]; ?>">
+                        </div>
+                      </div>
+                      
+                      
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Ing. Reference</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select name="reference" id="reference" class="form-control" required>
+                            <?php
+
+							$result = $mysqli->query("SELECT * FROM `ingredients`");
+							$row = $result->fetch_row();
+							$loopIngredient = $row;
+							
+                            while ( $loopIngredient != null ) {
+                            ?>
+	                            <option value="<?php echo $loopIngredient[0]; ?>"><?php echo $loopIngredient[1]; ?></option>
+                            <?php
+	                            $row = $result->fetch_row();
+								$loopIngredient = $row;
+                            }
+                            ?>
+                          </select>
                         </div>
                       </div>
                       

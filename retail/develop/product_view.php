@@ -1,24 +1,7 @@
 <!DOCTYPE html>
 
 <?php
-
 	$mysqli = new mysqli("localhost", "root", "", "beerecipe");
-
-	if ( isset($_POST["name"]) and isset($_POST["desc"]) ) {
-		$name = $_POST["name"];
-		$desc = $_POST["desc"];
-		$uid = $_POST["uid"];
-		// TODO Check uid, determinate if it's update action or not
-		
-		if ( $uid != "null" ) {
-			$mysqli->query("UPDATE `ingredients` SET name='$name', description='$desc' WHERE uid=$uid");
-		} else {
-			$mysqli->query("INSERT INTO `ingredients` ( uid, name, description ) VALUES ( $uid, '$name', '$desc' )");
-		}
-		unset($_POST["uid"]);
-		unset($_POST["name"]);
-		unset($_POST["desc"]);
-	}
 
 	$result = $mysqli->query("SELECT COUNT(*) FROM `ingredients`");
 	$row = $result->fetch_row();
@@ -71,7 +54,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="home.php" class="site_title"><i class="fa fa-paw"></i> <span>Beerecipe</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Beerecipe</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -153,12 +136,15 @@
               <div class="count"><?php echo ($ingredientsTotal + $productsTotal + $recipesTotal); ?></div>
             </div>
           </div>
-		  		  
+		  
 		  <div class="row">
+             
+              <div class="clearfix"></div>
+
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Form Design <small>different form elements</small></h2>
+                    <h2>Table design <small>Custom design</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -176,55 +162,72 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content">
-                    <br />
-                    
-					<?php
-						$uid = "null";
-						$found = array();
-						if ( isset($_GET["edit"]) ) {
-							$uid = $_GET["edit"];
-							
-							
-							$result = $mysqli->query("SELECT name, description FROM `ingredients` WHERE uid=$uid");
-							$row = $result->fetch_row();
-							$found = $row;
-						} else {
-							$found[0] = "";
-							$found[1] = "";
-						}
-					?>
-					
-					<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="ingredient_insert.php" method="POST">
-					<input type="hidden" name="uid" id="uid" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $uid; ?>">
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" name="name" id="name" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $found[0]; ?>">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Description <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="last-name" name="desc" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $found[1]; ?>">
-                        </div>
-                      </div>
-                      
-                      <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-						  <button class="btn btn-primary" type="reset">Reset</button>
-                          <button type="submit" class="btn btn-success">Submit</button>
-                        </div>
-                      </div>
 
-                    </form>
+                  <div class="x_content">
+
+                    <p>Add class <code>bulk_action</code> to table for bulk actions options on row select</p>
+
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                            <th>
+                              <input type="checkbox" id="check-all" class="flat">
+                            </th>
+                            <th class="column-title">UID </th>
+                            <th class="column-title">NAME </th>
+                            <th class="column-title">DESCRIPTION </th>
+                            <th class="column-title">PRICE </th>
+                            <th class="column-title">REFERENCE </th>
+                            <th class="column-title no-link last"><span class="nobr">ACTION</span>
+                            </th>
+                            <th class="bulk-actions" colspan="7">
+                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                            </th>
+                          </tr>
+                        </thead>
+
+						
+                        <tbody>
+							<?php
+							
+								// TODO iterate all element
+								$result = $mysqli->query("SELECT * FROM `products`");
+								$row = $result->fetch_row();
+								$pair = false;
+								while ( $row != null ) {
+							?>
+                          <tr class="<?php $pair ? 'even' : 'odd'; ?> pointer">
+                            <td class="a-center ">
+                              <input type="checkbox" class="flat" name="table_records">
+                            </td>
+                            <td class=" "><?php echo $row[0]; ?></td>
+                            <td class=" "><?php echo $row[1]; ?> </td>
+                            <td class=" "><?php echo $row[2]; ?> </td>
+                            <td class=" "><?php echo $row[3]; ?> </td>
+                            <td class=" "><a href="product_insert.php?edit=<?php echo $row[4]; ?>"><?php echo $row[4]; ?></a></td>
+                            <td class=" last">
+								<a href="ingredient_insert.php?edit=<?php echo $row[0]; ?>">Edit</a>
+								| <a href="delete.php?path=ingredient_view.php&table=ingredients&delete=<?php echo $row[0]; ?>">Delete</a>
+                            </td>
+                          </tr>
+							<?php		
+									$row = $result->fetch_row();				
+									$pair = !$pair;
+								}
+							
+							?>
+                        </tbody>
+                      </table>
+                    </div>
+							
+						
                   </div>
                 </div>
               </div>
-            </div>			
+            </div>
+		  
+			
 			
           <!-- /top tiles -->
           <br />
