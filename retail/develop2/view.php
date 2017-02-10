@@ -60,8 +60,8 @@ if ( isset($_GET['type']) ) {
 	                            <td><?php echo $row[1]; ?></td>
 	                            <td><?php echo $row[2]; ?></td>
 	                            <td>
-									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+									<a href="action/delete.php?uid=<?php echo $row[0]; ?>&type=<?php echo $type; ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+									<a href=""><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
 								</td>
 	                        </tr>
                             <?php
@@ -86,8 +86,8 @@ if ( isset($_GET['type']) ) {
 	                            <td><?php echo $row[3]; ?></td>
 	                            <td><?php echo $row[4]; ?></td>
 	                            <td>
-									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+									<a href="action/delete.php?uid=<?php echo $row[0]; ?>&type=<?php echo $type; ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+									<a href=""><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
 								</td>
 	                        </tr>
                             <?php

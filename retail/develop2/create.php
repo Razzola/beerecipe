@@ -1,5 +1,6 @@
 <?php
 
+	$mysqli = new mysqli("localhost", "root", "", "beerecipe");
 $type = "";
 if ( isset($_GET['type']) ) {
 	$type = $_GET['type'];
@@ -55,14 +56,26 @@ if ( isset($_GET['type']) ) {
 					
 					<div class="form-group">
 	                    <label>Price</label>
-	                    <input name="name" class="form-control">
+	                    <input name="price" class="form-control">
 	                    <p class="help-block">Name</p>
 	                </div>
 	                
 	                <div class="form-group">
 	                    <label>Reference</label>
-	                    <select class="form-control">
+	                    <select class="form-control" name="reference">
 	                        <option value="">1</option>
+	                    	 <?php
+
+							$result = $mysqli->query("SELECT * FROM `ingredients`");
+							$row = $result->fetch_row();
+							
+                            while ( $row != null ) {
+                            ?>
+	                            <option value="<?php echo $row[0]; ?>"><?php echo $row[1]; ?></option>
+                            <?php
+	                            $row = $result->fetch_row();
+                            }
+                            ?>
 	                    </select>
 	                </div>
 	                
