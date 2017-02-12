@@ -3,16 +3,32 @@
 $type = "";
 if ( isset($_GET['type']) ) {
 	$type = $_GET['type'];
+	
+
+	switch ($type) {
+		case 'prd':
+			$name = 'products';
+			break;
+		case 'rec':
+			$name = 'recipes';
+			break;
+		case 'ing':
+			$name= 'ingredients';
+			break;
+	}
 }
 
 ?>
 
 <div class="col-lg-12">
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Ingredients</h3>
-        </div>
+    <br/>
         <div class="panel-body">
+        <div class="text-right">
+             <a href="index.php?p=create&type=<?php echo $type;?>">Insert new <?php echo $name;?> 
+               <i class="fa fa-arrow-circle-right"></i></a>
+         </div>
+         <br/>
             <div class="table-responsive">
                 <table class="table table-bordered table-hover table-striped">
                     <thead>
@@ -37,6 +53,18 @@ if ( isset($_GET['type']) ) {
                             <th>Price</th>
                             <th>Reference</th>
                             <th>Action</th>
+                            <?php
+                            }
+                            ?>
+                            
+                            
+                            <?php
+                            if ( $type == 'rec' ) {
+                            ?>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
                             <?php
                             }
                             ?>
@@ -100,7 +128,8 @@ if ( isset($_GET['type']) ) {
                 </table>
             </div>
             <div class="text-right">
-                <a href="#">Control Panel - All Records <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="index.php?p=create&type=<?php echo $type;?>">Insert new <?php echo $name;?>
+                  <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
     </div>
