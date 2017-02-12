@@ -47,7 +47,6 @@ if ( isset($_GET['type']) ) {
                             <?php
                             if ( $type == 'prd' ) {
                             ?>
-                            <th>#</th>
                             <th>Name</th>
                             <th>Description</th>
                             <th>Price</th>
@@ -102,7 +101,8 @@ if ( isset($_GET['type']) ) {
                             if ( $type == 'prd' ) {
                             
 	                            $mysqli = new mysqli("localhost", "root", "", "beerecipe");
-	                            $result = $mysqli->query("SELECT * FROM `products`");
+	                            $result = $mysqli->query("SELECT a.name,a.description,a.price, b.name FROM products a
+															left join ingredients b on a.ingredients_uid=b.uid ");
 								$row = $result->fetch_row();  
 								                          
                             	while ( $row != null ) {
@@ -112,7 +112,6 @@ if ( isset($_GET['type']) ) {
 	                            <td><?php echo $row[1]; ?></td>
 	                            <td><?php echo $row[2]; ?></td>
 	                            <td><?php echo $row[3]; ?></td>
-	                            <td><?php echo $row[4]; ?></td>
 	                            <td>
 									<a href="action/delete.php?uid=<?php echo $row[0]; ?>&type=<?php echo $type; ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 									<a href=""><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
