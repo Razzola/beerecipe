@@ -71,10 +71,10 @@ jQuery.fn.filterByText = function(textbox) {
 <?php
 
 	$mysqli = new mysqli("localhost", "root", "", "beerecipe");
-$type = "";
-if ( isset($_GET['type']) ) {
-	$type = $_GET['type'];
-}
+	$type = "";
+	if ( isset($_GET['type']) ) {
+		$type = $_GET['type'];
+	}
 
 ?>
 
