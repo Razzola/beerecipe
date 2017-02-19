@@ -60,10 +60,9 @@ if ( isset($_GET['type']) ) {
                             <?php
                             if ( $type == 'rec' ) {
                             ?>
-                            <th>#</th>
                             <th>Name</th>
                             <th>Description</th>
-                            <th>Price</th>
+                            <th>Detail</th>
                             <?php
                             }
                             ?>
@@ -112,6 +111,30 @@ if ( isset($_GET['type']) ) {
 	                            <td><?php echo $row[1]; ?></td>
 	                            <td><?php echo $row[2]; ?></td>
 	                            <td><?php echo $row[3]; ?></td>
+	                            <td>
+									<a href="action/delete.php?uid=<?php echo $row[0]; ?>&type=<?php echo $type; ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+									<a href=""><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+								</td>
+	                        </tr>
+                            <?php
+								$row = $result->fetch_row();
+                            	}
+                            }
+                            ?>
+                            
+                            <?php
+                            if ( $type == 'rec' ) {
+                            
+	                            $mysqli = new mysqli("localhost", "root", "", "beerecipe");
+	                            $result = $mysqli->query("SELECT uid, name,description FROM recipe");
+								$row = $result->fetch_row();  
+								                          
+                            	while ( $row != null ) {
+                            ?>
+                        	<tr>
+	                            <td><?php echo $row[1]; ?></td>
+	                            <td><?php echo $row[2]; ?></td>
+	                            <td><a href="index.php?p=detail&type=<?php echo $type;?>&id=<?php echo $row[0];?>">Detail</a></td>
 	                            <td>
 									<a href="action/delete.php?uid=<?php echo $row[0]; ?>&type=<?php echo $type; ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 									<a href=""><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>

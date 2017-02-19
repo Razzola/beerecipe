@@ -14,6 +14,9 @@ if ( isset($_GET['type']) ) {
 			$name= 'ingredients';
 			break;
 	}
+	
+	$submit="Submit";
+	$reset="Reset";
 }
 ?>
 <!DOCTYPE html>
