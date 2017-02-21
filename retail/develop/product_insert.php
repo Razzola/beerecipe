@@ -12,7 +12,7 @@
 		$reference = $_POST["reference"];
 		
 		// TODO Check uid, determinate if it's update action or not
-		
+
 		if ( $uid != "null" ) {
 			$mysqli->query("UPDATE `products` SET name='$name', description='$desc', price='$price', ingredients_uid='$reference' WHERE uid=$uid");
 		} else {
