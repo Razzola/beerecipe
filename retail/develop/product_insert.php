@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <?php
-
 	$mysqli = new mysqli("localhost", "root", "", "beerecipe");
 
 	if ( isset($_POST["name"]) and isset($_POST["desc"]) and isset($_POST["price"]) and isset($_POST["reference"]) ) {

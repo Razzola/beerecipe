@@ -14,13 +14,12 @@ if ( isset($_GET['type']) ) {
 		$result = $mysqli->query("INSERT INTO `ingredients` ( uid, name, description ) VALUES ( null, '$name', '$desc' ) ") or die($mysqli->error);
 		
 	}
-	
-	if ( $type == 'prd' and isset($_GET['name']) and isset($_GET['desc']) and isset($_GET['price']) and isset($_GET['reference']) ) {
-		
+	if ( $type == 'prd' and isset($_GET['name'])  and isset($_GET['price']) and isset($_GET['ingredient']) ) {
+
 		$name = $_GET['name'];
 		$desc = $_GET['desc'];
 		$price = $_GET['price'];
-		$reference = $_GET['reference'];
+		$reference = $_GET['ingredient'];
 		
 		$result = $mysqli->query("INSERT INTO `products` ( uid, name, description, price, ingredients_uid ) VALUES ( null, '$name', '$desc', '$price', '$reference' ) ") or die($mysqli->error);
 		

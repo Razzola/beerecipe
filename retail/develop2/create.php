@@ -97,7 +97,7 @@
 					<div name= "rowIng">
 		                <div class="form-group col-xs-6 col-sm-3 ">
 		                    <label>Ingredient</label>
-		                    <select class="form-control" name="ingredient" onchange="getProducts()">
+		                    <select class="form-control" name="ingredient" onchange="getProducts(this)">
 		                    	 <?php
 	
 								$result = $mysqli->query("SELECT * FROM `ingredients`");

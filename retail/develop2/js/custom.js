@@ -1,8 +1,7 @@
-function getProducts(){
+function getProducts(element){
 	debugger;
-	alert($(this).index());
-	var selectedIngredient = document.getElementsByName("ingredient")[0].value;
-	var selectProduct = document.getElementsByName("product")[0];
+	var selectedIngredient = element.value;
+	var selectProduct = element.closest('div').next().find('form-group col-xs-6 col-sm-3 ');;
     for (var i = 0; i < selectProduct.length; i++) {
         var val = selectProduct.options[i].value;
     	var productIngredient = val.split("|");
