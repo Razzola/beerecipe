@@ -5,6 +5,8 @@
 	if ( isset($_GET['type']) ) {
 		$type = $_GET['type'];
 	}
+	
+	$count=0;
 
 ?>
 
@@ -97,7 +99,7 @@
 					<div name= "rowIng">
 		                <div class="form-group col-xs-6 col-sm-3 ">
 		                    <label>Ingredient</label>
-		                    <select class="form-control" name="ingredient" onchange="getProducts(this)">
+		                    <select class="form-control" name="ingredient<?php echo $count; ?>" onchange="getProducts('ingredient<?php echo $count;?>')">
 		                    	 <?php
 	
 								$result = $mysqli->query("SELECT * FROM `ingredients`");
@@ -115,7 +117,7 @@
 		                
 		                <div class="form-group col-xs-6 col-sm-3 ">
 		                    <label>Product</label>
-		                    <select class="form-control" name="product" onchange="setPrice()">
+		                    <select class="form-control" name="product<?php echo $count;?>" onchange="setPrice()">
 		                    <option value="">Select value</option>
 		                    	 <?php
 	

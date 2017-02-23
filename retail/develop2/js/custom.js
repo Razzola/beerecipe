@@ -1,7 +1,10 @@
-function getProducts(element){
+function getProducts(ingNameEle){
 	debugger;
-	var selectedIngredient = element.value;
-	var selectProduct = element.closest('div').next().find('form-group col-xs-6 col-sm-3 ');;
+	var prodNameEle=ingNameEle.replace('ingredient','product');
+	
+	var selectedIngredient = document.getElementsByName(ingNameEle)[0];
+	var selectProduct =  document.getElementsByName(prodNameEle)[0];
+	
     for (var i = 0; i < selectProduct.length; i++) {
         var val = selectProduct.options[i].value;
     	var productIngredient = val.split("|");
@@ -21,8 +24,10 @@ function setPrice(){
 }
 
 function addRow(text){
+	debugger;
 	var eleForm = document.getElementsByName("otherIng")[0];
-	eleForm.innerHTML +=  text ;
+	var newIng = text.replace('<select class="form-control" name="ingredient0" onchange="getProducts("ingredient0")">','<select class="form-control" name="ingredient1" onchange="getProducts("ingredient1")">')
+	eleForm.innerHTML +=  newIng ;
 	
 }
 
