@@ -1,4 +1,6 @@
-function getProducts(ingNameEle){
+var count = 1
+
+function getProducts(element){
 	debugger;
 	var prodNameEle=ingNameEle.replace('ingredient','product');
 	
@@ -26,22 +28,12 @@ function setPrice(){
 function addRow(text){
 	debugger;
 	var eleForm = document.getElementsByName("otherIng")[0];
-	var newIng = text.replace('<select class="form-control" name="ingredient0" onchange="getProducts("ingredient0")">','<select class="form-control" name="ingredient1" onchange="getProducts("ingredient1")">')
+	var newIng = text.replace('ingredient','ingredient'+count)
+	var newIng = newIng.replace('getProducts(\'ingredient\')','getProducts(\'ingredient'+count+'\')')
 	eleForm.innerHTML +=  newIng ;
+	count++;
 	
 }
-
-/*
-function getPrice(){
-	var selectedProduct = document.getElementsByName("product")[0].value;
-    	var productIngredient = val.split("|");
-    	var include = false;
-    	if (selectedProduct==productIngredient[1])
-        	var include = true;
-        selectProduct.options[i].style.display = include ? 'list-item':'none';
-    }
-	
-}*/
 
 
 jQuery.fn.filterByText = function(textbox) {
