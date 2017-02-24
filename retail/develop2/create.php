@@ -97,7 +97,8 @@
 					<div name= "rowIng">
 		                <div class="form-group col-xs-6 col-sm-3 ">
 		                    <label>Ingredient</label>
-		                    <select class="form-control" name="ingredient" onchange="getProducts('ingredient')">
+		                    <select class="form-control" name="ingredient" onchange="getProducts(this.name)">
+		                    	<option value="">Select ingredient</option>
 		                    	 <?php
 	
 								$result = $mysqli->query("SELECT * FROM `ingredients`");
@@ -115,8 +116,8 @@
 		                
 		                <div class="form-group col-xs-6 col-sm-3 ">
 		                    <label>Product</label>
-		                    <select class="form-control" name="product<?php echo $count;?>" onchange="setPrice()">
-		                    <option value="">Select value</option>
+		                    <select class="form-control" name="product" onchange="setPrice(this.name)">
+		                    	<option value="">Select product</option>
 		                    	 <?php
 	
 								$result = $mysqli->query("SELECT uid,name,ingredients_uid,price FROM products");

@@ -1,7 +1,6 @@
 var count = 1
 
-function getProducts(element){
-	debugger;
+function getProducts(ingNameEle){
 	var prodNameEle=ingNameEle.replace('ingredient','product');
 	
 	var selectedIngredient = document.getElementsByName(ingNameEle)[0];
@@ -11,25 +10,33 @@ function getProducts(element){
         var val = selectProduct.options[i].value;
     	var productIngredient = val.split("|");
     	var include = false;
-    	if (selectedIngredient==productIngredient[1])
+    	if (selectedIngredient.value==productIngredient[1])
         	var include = true;
         selectProduct.options[i].style.display = include ? 'list-item':'none';
     }
 	
 }
-function setPrice(){
-	var selectedIngredient = document.getElementsByName("product")[0].value;
-	var getPrice = selectedIngredient.split("|")[2];
-	var eleProduct = document.getElementsByName("price")[0];
+function setPrice(prodNameEle){
+	debugger;
+	var selectedProduct = document.getElementsByName(prodNameEle)[0].value;
+	var getPrice = selectedProduct.split("|")[2];
+	var priceNameEle=prodNameEle.replace('product','price');
+	var eleProduct = document.getElementsByName(priceNameEle)[0];
 	eleProduct.value = getPrice;
 	
 }
 
 function addRow(text){
-	debugger;
 	var eleForm = document.getElementsByName("otherIng")[0];
-	var newIng = text.replace('ingredient','ingredient'+count)
-	var newIng = newIng.replace('getProducts(\'ingredient\')','getProducts(\'ingredient'+count+'\')')
+	var newIng = text.replace('ingredient','ingredient'+count);
+	newIng = newIng.replace('product','product'+count);
+	newIng = newIng.replace('price','price'+count);
+	newIng = newIng.replace('quantity','quantity'+count);
+	newIng = newIng.replace('getProducts(\'ingredient\')','getProducts(\'ingredient'+count+'\')');
+	newIng = newIng.replace('<label>Ingredient</label>','');
+	newIng = newIng.replace('<label>Product</label>','');
+	newIng = newIng.replace('<label>Quantity</label>','');
+	newIng = newIng.replace('<label>Price</label>','');
 	eleForm.innerHTML +=  newIng ;
 	count++;
 	
