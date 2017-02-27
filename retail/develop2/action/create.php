@@ -24,12 +24,12 @@ if ( isset($_GET['type']) ) {
 		$result = $mysqli->query("INSERT INTO `products` ( uid, name, description, price, ingredients_uid ) VALUES ( null, '$name', '$desc', '$price', '$reference' ) ") or die($mysqli->error);
 		
 	}
-	if ( $type == 'roc' and isset($_GET['name'])) {
+	if ( $type == 'rec' and isset($_GET['name'])) {
 		
 		$name = $_GET['name'];
 		$desc = $_GET['desc'];
 	
-		//$result = $mysqli->query("INSERT INTO `recipe` ( uid, name, description ) VALUES ( null, '$name', '$desc' ) ") or die($mysqli->error);
+		$result = $mysqli->query("INSERT INTO `recipe` ( uid, name, description ) VALUES ( null, '$name', '$desc' ) ") or die($mysqli->error);
 	
 		$url = $_SERVER['REQUEST_URI'];
 		$params=explode('&',$url);
@@ -39,23 +39,31 @@ if ( isset($_GET['type']) ) {
 				$elements=explode("=",$param);
 					$field = $elements[0];
 					if (strpos($field, "ingredient") !== false){
-						$ingredient[2];
+						$ingredient[2]=null;
 					}
 					if (strpos($field, "product") !== false){
-						$productMid = explode("|",$elements[1]);
-						$ingredient[0]=$productMid[1];
+						$productMid = null;
+						if (strpos($elements[1], "|") !== false){
+							$productMid = explode("|",$elements[1]);
+						}else{
+							$productMid = explode("%7C",$elements[1]);
+						}
+						$ingredient[0]=$productMid[0];
 					}
 					if (strpos($field, "quantity") !== false){
 						$ingredient[1] = $elements[1];
-						//$query = $mysqli->query("INSERT INTO `recipe_has_products` ( recipe_uid, products_uid, quantity ) VALUES (".$recipeUid[0].",".$ingredient[0].",".$ingredient[1].")");
-						echo "INSERT INTO `recipe_has_products` ( recipe_uid, products_uid, quantity ) VALUES (".$recipeUid[0].",".$ingredient[0].",".$ingredient[1].")";
+						$query = "INSERT INTO `recipe_has_products` ( recipe_uid, products_uid, quantity ) VALUES (".$recipeUid[0].",".$ingredient[0].",".$ingredient[1]."); ";
+						//echo "INSERT INTO `recipe_has_products` ( recipe_uid, products_uid, quantity ) VALUES (".$recipeUid[0].",".$ingredient[0].",".$ingredient[1].")";
+						if (!$mysqli->query($query)) {
+						    die($mysqli->error);
+						}
 					}
 		}
 	}
 }
 
-//header("Location: ../index.php?p=view&type=" . $type);
+header("Location: ../index.php?p=view&type=" . $type);
 
-//$result = $mysqli->query("UPDATE `ingredients` SET name='$name', description='$desc' WHERE uid='$uid' ") or die($mysqli->error);
+$result = $mysqli->query("UPDATE `ingredients` SET name='$name', description='$desc' WHERE uid='$uid' ") or die($mysqli->error);
 ?>
 

@@ -17,7 +17,6 @@ function getProducts(ingNameEle){
 	
 }
 function setPrice(prodNameEle){
-	debugger;
 	var selectedProduct = document.getElementsByName(prodNameEle)[0].value;
 	var getPrice = selectedProduct.split("|")[2];
 	var priceNameEle=prodNameEle.replace('product','price');
@@ -37,7 +36,7 @@ function addRow(text){
 	newIng = newIng.replace('<label>Product</label>','');
 	newIng = newIng.replace('<label>Quantity</label>','');
 	newIng = newIng.replace('<label>Price</label>','');
-	eleForm.innerHTML +=  newIng ;
+	eleForm.append +=  newIng ;
 	count++;
 	
 }

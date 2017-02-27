@@ -136,7 +136,7 @@
 		                
 						<div class="form-group col-xs-6 col-sm-3 ">
 		                    <label>Quantity</label>
-		                    <input name="quantity" class="form-control">
+		                    <input name="quantity" class="form-control" required>
 		                </div>
 		                
 		                
