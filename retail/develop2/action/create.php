@@ -35,6 +35,7 @@ if ( isset($_GET['type']) ) {
 		$params=explode('&',$url);
 		$max= $mysqli->query("SELECT MAX(uid) FROM recipe");
 		$recipeUid = $max->fetch_row();
+		$amount=0;
 		foreach ($params as &$param) {
 				$elements=explode("=",$param);
 					$field = $elements[0];
@@ -52,13 +53,17 @@ if ( isset($_GET['type']) ) {
 					}
 					if (strpos($field, "quantity") !== false){
 						$ingredient[1] = $elements[1];
-						$query = "INSERT INTO `recipe_has_products` ( recipe_uid, products_uid, quantity ) VALUES (".$recipeUid[0].",".$ingredient[0].",".$ingredient[1]."); ";
-						//echo "INSERT INTO `recipe_has_products` ( recipe_uid, products_uid, quantity ) VALUES (".$recipeUid[0].",".$ingredient[0].",".$ingredient[1].")";
-						if (!$mysqli->query($query)) {
-						    die($mysqli->error);
-						}
 					}
+					if (strpos($field, "price") !== false){
+						$ingredient[2] = $elements[1];
+						$amount=$amount+($ingredient[1]*$ingredient[2]);
+						$insert="INSERT INTO `recipe_has_products` ( recipe_uid, products_uid, quantity ) VALUES (".$recipeUid[0].",".$ingredient[0].",".$ingredient[1].");";
+						$query = $mysqli->query($insert)or die($mysqli->error);
+						}
+					
 		}
+		$update="UPDATE `recipe` SET amount=".$amount." WHERE uid=".$recipeUid[0];
+		$query = $mysqli->query($update)or die($mysqli->error);
 	}
 }
 
