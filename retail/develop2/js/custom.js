@@ -36,7 +36,7 @@ function addRow(text){
 	newIng = newIng.replace('<label>Product</label>','');
 	newIng = newIng.replace('<label>Quantity</label>','');
 	newIng = newIng.replace('<label>Price</label>','');
-	eleForm.innerHTML +=  newIng ;
+	eleForm.outerHTML +=  newIng ;
 	count++;
 	
 }

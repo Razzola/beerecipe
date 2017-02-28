@@ -58,17 +58,19 @@ if ( isset($_GET['type']) ) {
 						$ingredient[2] = $elements[1];
 						$amount=$amount+($ingredient[1]*$ingredient[2]);
 						$insert="INSERT INTO `recipe_has_products` ( recipe_uid, products_uid, quantity ) VALUES (".$recipeUid[0].",".$ingredient[0].",".$ingredient[1].");";
+						//echo $insert."<br/>";
 						$query = $mysqli->query($insert)or die($mysqli->error);
 						}
 					
 		}
 		$update="UPDATE `recipe` SET amount=".$amount." WHERE uid=".$recipeUid[0];
+		//echo $update."<br/>";
 		$query = $mysqli->query($update)or die($mysqli->error);
 	}
 }
 
 header("Location: ../index.php?p=view&type=" . $type);
 
-$result = $mysqli->query("UPDATE `ingredients` SET name='$name', description='$desc' WHERE uid='$uid' ") or die($mysqli->error);
+//$result = $mysqli->query("UPDATE `ingredients` SET name='$name', description='$desc' WHERE uid='$uid' ") or die($mysqli->error);
 ?>
 

@@ -6,6 +6,12 @@
 		$type = $_GET['type'];
 	}
 
+	if ( isset($_GET['uid']) ) {
+		$uid = $_GET['uid'];
+	}
+	
+	$getProduct = $mysqli->query("SELECT uid,name,description, price, ingredients_uid FROM `products` WHERE uid =".$uid);
+	$product = $getProduct->fetch_row();
 ?>
 
 <div class="col-lg-12">
@@ -14,7 +20,7 @@
             <h3 class="panel-title"> Creation form</h3>
         </div>
         <div class="panel-body">
-            <form role="form" action="action/create.php">
+            <form role="form" action="action/update.php">
 
 				<?php
 					if ( $type == 'ing' ) {
@@ -25,14 +31,11 @@
 					
 					<div class="form-group">
 	                    <label>Name</label>
-	                    <input name="name" class="form-control">
-	                    <p class="help-block">Name</p>
+	                    <input name="name" class="form-control" value="<?php echo $product[1];?>">
 	                </div>
-
 	                <div class="form-group">
 	                    <label>Description</label>
 	                    <textarea name="desc" class="form-control" rows="3"></textarea>
-	                    <p class="help-block">Description</p>
 	                </div>
 	                
 					<?php
@@ -45,24 +48,24 @@
 					
 					<div class="form-group">
 	                    <label>Name</label>
-	                    <input name="name" class="form-control">
-	                    <p class="help-block">Name</p>
+	                    <input name="name" class="form-control" value="<?php echo $product[1];?>">
 	                </div>
+					<input name="uid" type="hidden" value="<?php echo $product[0];?>">
 
 	                <div class="form-group">
 	                    <label>Description</label>
-	                    <textarea name="desc" class="form-control" rows="3"></textarea>
+	                    <textarea name="desc" class="form-control" rows="3" ><?php echo $product[2];?></textarea>
 	                </div>
 					
 					<div class="form-group">
 	                    <label>Price</label>
-	                    <input name="price" class="form-control">
-	                    <p class="help-block">Price</p>
+	                    <input name="price" class="form-control" value="<?php echo $product[3];?>">
 	                </div>
 	                
 	                <div class="form-group">
 	                    <label>Ingredient</label>
-	                    <select class="form-control" name="ingredient">
+	                    <select class="form-control" name="ingredient" value="<?php echo $product[4];?>" >
+		                   	<option value="">Select product</option>
 	                    	 <?php
 
 							$result = $mysqli->query("SELECT * FROM `ingredients`");
