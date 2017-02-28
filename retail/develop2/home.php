@@ -18,6 +18,10 @@
 		unset($_POST["desc"]);
 	}
 
+	$result = $mysqli->query("SELECT COUNT(*) FROM `category`");
+	$row = $result->fetch_row();
+	$categoryTotal = $row[0];
+
 	$result = $mysqli->query("SELECT COUNT(*) FROM `ingredients`");
 	$row = $result->fetch_row();
 	$ingredientsTotal = $row[0];
@@ -32,7 +36,28 @@
 ?>
 
 <div class="row">
-    
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-folder fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge"><?php echo $categoryTotal; ?></div>
+                        <div>Category</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
     <div class="col-lg-3 col-md-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -107,7 +132,7 @@
                         <i class="fa fa-database fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge"><?php echo $productsTotal + $recipesTotal + $ingredientsTotal; ?></div>
+                        <div class="huge"><?php echo $productsTotal + $recipesTotal + $ingredientsTotal + $categoryTotal; ?></div>
                         <div>Total</div>
                     </div>
                 </div>

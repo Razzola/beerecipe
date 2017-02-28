@@ -14,6 +14,16 @@ if ( isset($_GET['type']) ) {
 		$result = $mysqli->query("INSERT INTO `ingredients` ( uid, name, description ) VALUES ( null, '$name', '$desc' ) ") or die($mysqli->error);
 		
 	}
+	
+	if ( $type == 'cat' and isset($_GET['name']) and isset($_GET['desc']) ) {
+	
+		$name = $_GET['name'];
+		$desc = $_GET['desc'];
+	
+		$result = $mysqli->query("INSERT INTO `category` ( uid, name, description ) VALUES ( null, '$name', '$desc' ) ") or die($mysqli->error);
+	
+	}
+	
 	if ( $type == 'prd' and isset($_GET['name'])  and isset($_GET['price']) and isset($_GET['ingredient']) ) {
 
 		$name = $_GET['name'];
@@ -28,8 +38,9 @@ if ( isset($_GET['type']) ) {
 		
 		$name = $_GET['name'];
 		$desc = $_GET['desc'];
+		$cat = $_GET['category'];
 	
-		$result = $mysqli->query("INSERT INTO `recipe` ( uid, name, description ) VALUES ( null, '$name', '$desc' ) ") or die($mysqli->error);
+		$result = $mysqli->query("INSERT INTO `recipe` ( uid, name, description, category ) VALUES ( null, '$name', '$desc','$cat' ) ") or die($mysqli->error);
 	
 		$url = $_SERVER['REQUEST_URI'];
 		$params=explode('&',$url);

@@ -40,6 +40,27 @@
 				?>
 				
 				<?php
+					if ( $type == 'cat' ) {
+					
+						$uid = "null";
+					
+					?>
+					
+					<div class="form-group">
+	                    <label>Name</label>
+	                    <input name="name" class="form-control">
+	                </div>
+
+	                <div class="form-group">
+	                    <label>Description</label>
+	                    <textarea name="desc" class="form-control" rows="3"></textarea>
+	                </div>
+	                
+					<?php
+					}
+				?>
+				
+				<?php
 					if ( $type == 'prd' ) {
 					?>
 					
@@ -94,6 +115,24 @@
 		                    <label>Description</label>
 		                    <textarea name="desc" class="form-control" rows="3"></textarea>
 		                </div>
+		                <div class="form-group">
+		                    <label>Category</label>
+			                <select class="form-control" name="category" >
+			                    	<option value="">Select category</option>
+			                    	 <?php
+		
+									$result = $mysqli->query("SELECT * FROM `category`");
+									$row = $result->fetch_row();
+									
+		                            while ( $row != null ) {
+		                            ?>
+			                            <option value="<?php echo $row[0]; ?>"><?php echo $row[1]; ?></option>
+		                            <?php
+			                            $row = $result->fetch_row();
+		                            }
+		                            ?>
+			                    </select>
+			              </div>
 					<div name= "rowIng">
 		                <div class="form-group col-xs-6 col-sm-3 ">
 		                    <label>Ingredient</label>

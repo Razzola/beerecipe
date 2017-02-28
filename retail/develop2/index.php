@@ -13,6 +13,9 @@ if ( isset($_GET['type']) ) {
 		case 'ing':
 			$name= 'ingredients';
 			break;
+		case 'cat':
+			$name= 'category';
+			break;
 	}
 	
 	$submit="Submit";
@@ -86,6 +89,19 @@ if ( isset($_GET['type']) ) {
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
+                    	<a href="javascript:;" data-toggle="collapse" data-target="#cat">
+                            <i class="fa fa-fw fa-folder"></i>
+                            Category
+                            <i class="fa fa-fw fa-caret-down"></i>
+                        </a>
+                        <ul id="cat" class="collapse">
+                            <li>
+                                <a href="index.php?p=create&type=cat"><i class="fa fa-fw fa-plus"></i>Create</a>
+                            </li>
+                            <li>
+                                <a href="index.php?p=view&type=cat"><i class="fa fa-fw fa-eye"></i>View</a>
+                            </li>
+                        </ul>
                         <a href="javascript:;" data-toggle="collapse" data-target="#ing">
                             <i class="fa fa-fw fa-leaf"></i>
                             Ingredients
