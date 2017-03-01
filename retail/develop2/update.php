@@ -10,32 +10,58 @@
 		$uid = $_GET['uid'];
 	}
 	
-	$getProduct = $mysqli->query("SELECT uid,name,description, price, ingredients_uid FROM `products` WHERE uid =".$uid);
-	$product = $getProduct->fetch_row();
+	
+
 ?>
 
 <div class="col-lg-12">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"> Creation form</h3>
+            <h3 class="panel-title"> Update form</h3>
         </div>
         <div class="panel-body">
             <form role="form" action="action/update.php">
+            
+           		<?php
+					if ( $type == 'cat' ) {
+						
+						$result = $mysqli->query("SELECT uid,name,description FROM `category` WHERE uid =".$uid);
+						$row = $result->fetch_row();
+					
+					?>
+					
+					<input name="uid" type="hidden" value="<?php echo $row[0];?>">
+					
+					<div class="form-group">
+	                    <label>Name</label>
+	                    <input name="name" class="form-control" value="<?php echo $row[1];?>">
+	                </div>
+	                <div class="form-group">
+	                    <label>Description</label>
+	                    <textarea name="desc" class="form-control" rows="3"><?php echo $row[2];?></textarea>
+	                </div>
+	                
+					<?php
+					}
+				?>
 
 				<?php
 					if ( $type == 'ing' ) {
 					
-						$uid = "null";
+						$result = $mysqli->query("SELECT uid,name,description FROM `ingredients` WHERE uid =".$uid);
+						$row = $result->fetch_row();
 					
 					?>
 					
+					<input name="uid" type="hidden" value="<?php echo $row[0];?>">
+					
 					<div class="form-group">
 	                    <label>Name</label>
-	                    <input name="name" class="form-control" value="<?php echo $product[1];?>">
+	                    <input name="name" class="form-control" value="<?php echo $row[1];?>">
 	                </div>
 	                <div class="form-group">
 	                    <label>Description</label>
-	                    <textarea name="desc" class="form-control" rows="3"></textarea>
+	                    <textarea name="desc" class="form-control" rows="3"><?php echo $row[2];?></textarea>
 	                </div>
 	                
 					<?php
@@ -44,22 +70,27 @@
 				
 				<?php
 					if ( $type == 'prd' ) {
+						
+
+						$result = $mysqli->query("SELECT uid,name,description, price, ingredients_uid FROM `products` WHERE uid =".$uid);
+						$row = $result->fetch_row();
 					?>
 					
 					<div class="form-group">
 	                    <label>Name</label>
-	                    <input name="name" class="form-control" value="<?php echo $product[1];?>">
+	                    <input name="name" class="form-control" value="<?php echo $row[1];?>">
 	                </div>
-					<input name="uid" type="hidden" value="<?php echo $product[0];?>">
+	                
+					<input name="uid" type="hidden" value="<?php echo $row[0];?>">
 
 	                <div class="form-group">
 	                    <label>Description</label>
-	                    <textarea name="desc" class="form-control" rows="3" ><?php echo $product[2];?></textarea>
+	                    <textarea name="desc" class="form-control" rows="3" ><?php echo $row[2];?></textarea>
 	                </div>
 					
 					<div class="form-group">
 	                    <label>Price</label>
-	                    <input name="price" class="form-control" value="<?php echo $product[3];?>">
+	                    <input name="price" class="form-control" value="<?php echo $row[3];?>">
 	                </div>
 	                
 	                <div class="form-group">

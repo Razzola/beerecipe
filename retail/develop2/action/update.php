@@ -5,7 +5,17 @@ $type = "";
 
 if ( isset($_GET['type']) ) {
 	$type = $_GET['type'];
-		
+	
+	if ( $type == 'cat' and isset($_GET['uid']) and isset($_GET['name']) and isset($_GET['desc']) ) {
+		$uid = $_GET['uid'];
+		$name = $_GET['name'];
+		$desc = $_GET['desc'];
+	
+		$result = $mysqli->query("UPDATE `category` SET name='$name', description='$desc' WHERE uid='$uid' ") or die($mysqli->error);
+	
+	}
+
+	
 	if ( $type == 'ing' and isset($_GET['uid']) and isset($_GET['name']) and isset($_GET['desc']) ) {
 		$uid = $_GET['uid'];
 		$name = $_GET['name'];
