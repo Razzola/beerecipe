@@ -95,18 +95,25 @@
 	                
 	                <div class="form-group">
 	                    <label>Ingredient</label>
-	                    <select class="form-control" name="ingredient" value="<?php echo $product[4];?>" >
+	                    <select class="form-control" name="ingredient" >
 		                   	<option value="">Select product</option>
 	                    	 <?php
 
 							$result = $mysqli->query("SELECT * FROM `ingredients`");
-							$row = $result->fetch_row();
+							$ingredient = $result->fetch_row();
 							
-                            while ( $row != null ) {
-                            ?>
-	                            <option value="<?php echo $row[0]; ?>"><?php echo $row[1]; ?></option>
-                            <?php
-	                            $row = $result->fetch_row();
+                            while ( $ingredient != null ) {
+                            	if ($ingredient[0] == $row[4]){
+	                            	?>
+		                            	<option value="<?php echo $ingredient[0]; ?>" selected><?php echo $ingredient[1]; ?></option>
+	                            	<?php
+                            	}else{
+                            		?>
+                            			<option value="<?php echo $ingredient[0]; ?>"><?php echo $ingredient[1]; ?></option>
+                            		<?php
+                            	}
+                            
+	                            $ingredient = $result->fetch_row();
                             }
                             ?>
 	                    </select>
@@ -118,73 +125,87 @@
 				
 				<?php
 					if ( $type == 'rec' ) {
+						$recipes = $mysqli->query("SELECT uid,name,description,category FROM `recipe` WHERE uid =".$uid);
+						$recipe = $recipes->fetch_row();
+						
 					?>
 						<div class="form-group">
 		                    <label>Name</label>
-		                    <input name="name" class="form-control">
+		                    <input name="name" class="form-control" value="<?php echo $recipe[1];?>">
+               				<input type="hidden" name="uid" class="form-control" value="<?php echo $uid; ?>">
 		                </div>
 	
 		                <div class="form-group">
 		                    <label>Description</label>
-		                    <textarea name="desc" class="form-control" rows="3"></textarea>
+		                    <textarea name="desc" class="form-control" rows="3" value="<?php echo $recipe[2];?>"></textarea>
 		                </div>
-					<div name= "rowIng">
-		                <div class="form-group col-xs-6 col-sm-3 ">
-		                    <label>Ingredient</label>
-		                    <select class="form-control" name="ingredient" onchange="getProducts(this.name)">
-		                    	<option value="">Select ingredient</option>
-		                    	 <?php
-	
-								$result = $mysqli->query("SELECT * FROM `ingredients`");
+					 
+	                <div class="form-group">
+	                    <label>Category</label>
+	                    <select class="form-control" name="ingredient" >
+		                   	<option value="">Select category</option>
+	                    	 <?php
+
+							$result = $mysqli->query("SELECT * FROM `category`");
+							$category = $result->fetch_row();
+							
+                            while ( $category != null ) {
+                            	if ($category[0] == $recipe[3]){
+	                            	?>
+		                            	<option value="<?php echo $category[0]; ?>" selected><?php echo $category[1]; ?></option>
+	                            	<?php
+                            	}else{
+                            		?>
+                            			<option value="<?php echo $category[0]; ?>"><?php echo $category[1]; ?></option>
+                            		<?php
+                            	}
+                            
+	                            $category = $result->fetch_row();
+                            }
+                            ?>
+	                    </select>
+	                </div>
+	                <table class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+	                <?php
+                            $result = $mysqli->query("SELECT products_uid,NAME,quantity, price
+														FROM recipe_has_products 
+														LEFT JOIN products ON products.uid=recipe_has_products.products_uid
+														WHERE recipe_uid=".$recipe[0]);
+							$row = $result->fetch_row();  
+							$prdIndex=0;
+								                          
+                            while ( $row != null ) {
+                            ?>
+                        	<tr>
+	                            <td>
+	                            	<?php echo $row[1]; ?>
+               					 	<input type="hidden" name="prd_uid<?php echo $prdIndex;?>" class="form-control" value="<?php echo $row[0]; ?>">
+               					</td>
+	                            <td>
+	                            	<input name="quantity<?php echo $prdIndex;?>" class="form-control" required value="<?php echo $row[2]; ?>">
+	                            </td>
+								<td>
+	                            	<?php echo $row[3]; ?>
+								</td>
+	                            <td>
+									<a href="index.php?p=update&uid=<?php echo $row[0]; ?>&type=prd"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+								</td>
+	                        </tr>
+                            <?php
 								$row = $result->fetch_row();
-								
-	                            while ( $row != null ) {
-	                            ?>
-		                            <option value="<?php echo $row[0]; ?>"><?php echo $row[1]; ?></option>
-	                            <?php
-		                            $row = $result->fetch_row();
-	                            }
-	                            ?>
-		                    </select>
-		                </div>
-		                
-		                <div class="form-group col-xs-6 col-sm-3 ">
-		                    <label>Product</label>
-		                    <select class="form-control" name="product" onchange="setPrice(this.name)">
-		                    	<option value="">Select product</option>
-		                    	 <?php
-	
-								$result = $mysqli->query("SELECT uid,name,ingredients_uid,price FROM products");
-								$row = $result->fetch_row();
-								
-	                            while ( $row != null ) {
-	                            ?>
-		                            <option value="<?php echo $row[0]; ?>|<?php echo $row[2]; ?>|<?php echo $row[3]; ?>"><?php echo $row[1]; ?></option>
-	                            <?php
-		                            $row = $result->fetch_row();
-	                            }
-	                            ?>
-		                    </select>
-		                </div>
-		                
-		                
-						<div class="form-group col-xs-6 col-sm-3 ">
-		                    <label>Quantity</label>
-		                    <input name="quantity" class="form-control" required>
-		                </div>
-		                
-		                
-		                <div class="form-group col-xs-6 col-sm-3 ">
-		                    <label>Price</label>
-		                    <input  class="form-control" name="price">
-		                    <p  class="help-block"></p>
-		                </div>
-		                
-		                
-	                	
-                	</div>
-                	<div name="otherIng"></div>
-					<p>New ingredient: <a onclick="addRow(document.getElementsByName('rowIng')[0].innerHTML)"><span class="glyphicon glyphicon-plus"></span></a></p> 	                
+								$prdIndex++;
+                            }
+                    ?>
+                    	</tbody>
+                    </table>              
 					<?php
 					}
 				?>

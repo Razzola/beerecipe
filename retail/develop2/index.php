@@ -1,8 +1,8 @@
 <?php 
 $type = "";
+$name="general";
 if ( isset($_GET['type']) ) {
 	$type = $_GET['type'];
-
 	switch ($type) {
 		case 'prd':
 			$name = 'products';

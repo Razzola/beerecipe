@@ -76,9 +76,9 @@
 	                </div>
 					
 					<div class="form-group">
-	                    <label>Price</label>
+	                    <label>Price (0.00)</label>
 	                    <input name="price" class="form-control">
-	                    <p class="help-block">Price</p>
+	                    <p class="help-block">Price in kg</p>
 	                </div>
 	                
 	                <div class="form-group">

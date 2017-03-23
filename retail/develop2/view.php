@@ -96,7 +96,6 @@ if ( isset($_GET['type']) ) {
 	                            <td><?php echo $row[1]; ?></td>
 	                            <td><?php echo $row[2]; ?></td>
 	                            <td>
-									<a href="action/delete.php?uid=<?php echo $row[0]; ?>&type=<?php echo $type; ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 									<a href="index.php?p=update&uid=<?php echo $row[0]; ?>&type=<?php echo $type; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
 								</td>
 	                        </tr>
@@ -173,8 +172,7 @@ if ( isset($_GET['type']) ) {
 	                            <td><?php echo $row[3]; ?></td>
 	                            <td><?php echo $row[4]; ?></td>
 	                            <td>
-	                            	<a href="index.php?p=detail&type=<?php echo $type;?>&uid=<?php echo $row[0];?>"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
-									<a href="action/delete.php?uid=<?php echo $row[0]; ?>&type=<?php echo $type; ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+	                            	<a href="action/delete.php?uid=<?php echo $row[0]; ?>&type=<?php echo $type; ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 									<a href="index.php?p=update&uid=<?php echo $row[0]; ?>&type=<?php echo $type; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
 								</td>
 	                        </tr>

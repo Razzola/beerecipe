@@ -14,6 +14,38 @@ if ( isset($_GET['type']) ) {
 		$result = $mysqli->query("UPDATE `category` SET name='$name', description='$desc' WHERE uid='$uid' ") or die($mysqli->error);
 	
 	}
+	
+	if ( $type == 'rec' and isset($_GET['uid']) and isset($_GET['name']) ) {
+		$uid = $_GET['uid'];
+		$name = $_GET['name'];
+		$desc = $_GET['desc'];
+	
+	
+		$url = $_SERVER['REQUEST_URI'];
+		$params=explode('&',$url);
+		$amount=0;
+		foreach ($params as &$param) {
+			$elements=explode("=",$param);
+			$field = $elements[0];
+			if (strpos($field, "prd_uid") !== false){
+				$product[2]=null;
+				$product[0]=$elements[1];
+			}
+			if (strpos($field, "quantity") !== false){
+				$product[1] = $elements[1];
+				//get price
+				$prdQuery=$mysqli->query("SELECT price FROM products WHERE uid=".$product[0]);
+				$product[2] = $prdQuery->fetch_row()[0];
+				$amount=$amount+($product[1]*$product[2]);
+				$update="UPDATE `recipe_has_products` SET quantity=".$product[1]." WHERE recipe_uid=".$uid." AND products_uid=".$product[0];
+				$query = $mysqli->query($update)or die($mysqli->error);
+			}
+				
+		}
+
+		$result = $mysqli->query("UPDATE `recipe` SET amount='$amount',name='$name', description='$desc' WHERE uid='$uid' ") or die($mysqli->error);
+		
+	}
 
 	
 	if ( $type == 'ing' and isset($_GET['uid']) and isset($_GET['name']) and isset($_GET['desc']) ) {
