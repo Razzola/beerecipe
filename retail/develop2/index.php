@@ -16,6 +16,8 @@ if ( isset($_GET['type']) ) {
 		case 'cat':
 			$name= 'category';
 			break;
+		case 'wh':
+			$name = 'warehouse';
 	}
 	
 	$submit="Submit";
@@ -139,6 +141,19 @@ if ( isset($_GET['type']) ) {
                             </li>
                             <li>
                                 <a href="index.php?p=view&type=rec"><i class="fa fa-fw fa-eye"></i>View</a>
+                            </li>
+                        </ul>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#wh">
+                            <i class="fa fa-fw fa-archive"></i>
+                            Warehouse
+                            <i class="fa fa-fw fa-caret-down"></i>
+                        </a>
+                        <ul id="wh" class="collapse">
+                            <li>
+                                <a href="index.php?p=create&type=wh"><i class="fa fa-fw fa-plus"></i>Create</a>
+                            </li>
+                            <li>
+                                <a href="index.php?p=view&type=wh"><i class="fa fa-fw fa-eye"></i>View</a>
                             </li>
                         </ul>
                     </li>

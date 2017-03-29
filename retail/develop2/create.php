@@ -15,7 +15,6 @@
         </div>
         <div class="panel-body">
             <form role="form" action="action/create.php">
-
 				<?php
 					if ( $type == 'ing' ) {
 					
@@ -193,7 +192,37 @@
 					<?php
 					}
 				?>
-                
+				
+				<?php
+					if ( $type == 'wh' ) {
+					?>
+	                
+	                <div class="form-group col-xs-12 col-sm-6">
+	                    <label>Product</label>
+	                    <select class="form-control" name="product">
+	                    	 <?php
+
+							$result = $mysqli->query("SELECT uid,name FROM `products`");
+							$row = $result->fetch_row();
+							
+                            while ( $row != null ) {
+                            ?>
+	                            <option value="<?php echo $row[0]; ?>"><?php echo $row[1]; ?></option>
+                            <?php
+	                            $row = $result->fetch_row();
+                            }
+                            ?>
+	                    </select>
+	                </div>
+	                
+					<div class="form-group col-xs-12 col-sm-6">
+	                    <label>Quantity</label>
+	                    <input name="quantity" class="form-control" required>
+	                </div>
+	                
+					<?php
+					}
+				?>
                 <input type="hidden" name="type" class="form-control" value="<?php echo $type; ?>">
                 <button type="submit" class="btn btn-default"><?php echo $submit;?></button>
                 <button type="reset" class="btn btn-default"><?php echo $reset;?></button>

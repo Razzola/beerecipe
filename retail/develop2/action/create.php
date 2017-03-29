@@ -78,6 +78,15 @@ if ( isset($_GET['type']) ) {
 		//echo $update."<br/>";
 		$query = $mysqli->query($update)or die($mysqli->error);
 	}
+	
+	if ( $type == 'wh' ) {
+	
+		$product = $_GET['product'];
+		$quantity = $_GET['quantity'];
+	
+		$result = $mysqli->query("INSERT INTO `warehouse` ( uid, product_uid, quantity ) VALUES ( null, '$product', '$quantity' ) ") or die($mysqli->error);
+	
+	}
 }
 
 header("Location: ../index.php?p=view&type=" . $type);

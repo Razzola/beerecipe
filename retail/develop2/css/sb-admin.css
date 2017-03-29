@@ -225,3 +225,21 @@ ul.alert-dropdown {
 .panel-yellow > a:hover {
     color: #df8a13;
 }
+
+.panel-gray {
+    border-color: #AFA4A0;
+}
+
+.panel-gray > .panel-heading {
+    border-color: #AFA4A0;
+    color: #fff;
+    background-color: #AFA4A0;
+}
+
+.panel-gray > a {
+    color: #AFA4A0;
+}
+
+.panel-gray > a:hover {
+    color: #8D8684;
+}
