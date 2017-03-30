@@ -209,7 +209,54 @@
 					<?php
 					}
 				?>
-                
+				
+				
+                <?php
+					if ( $type == 'wh' ) {
+					
+						$result = $mysqli->query("SELECT a.uid, b.name AS prdname, a.quantity, b.uid AS prduid
+													FROM warehouse a 
+													LEFT JOIN products b ON b.uid=a.product_uid WHERE a.uid =".$uid);
+						$row = $result->fetch_row();
+					
+					?>
+					
+					<input name="uid" type="hidden" value="<?php echo $row[0];?>">
+					
+					<div class="form-group col-xs-12 col-sm-6">
+	                    <label>Product</label>
+	                    <select class="form-control" name="product" >
+		                   	<option value="">Select product</option>
+	                    	 <?php
+
+							$result = $mysqli->query("SELECT * FROM `products`");
+							$product = $result->fetch_row();
+							
+                            while ( $product != null ) {
+                            	if ($product[0] == $row[3]){
+	                            	?>
+		                            	<option value="<?php echo $product[0]; ?>" selected><?php echo $product[1]; ?></option>
+	                            	<?php
+                            	}else{
+                            		?>
+                            			<option value="<?php echo $product[0]; ?>"><?php echo $product[1]; ?></option>
+                            		<?php
+                            	}
+                            
+	                            $product = $result->fetch_row();
+                            }
+                            ?>
+	                    </select>
+	                </div>
+	                <div class="form-group col-xs-12 col-sm-6">
+	                    <label>Quantity</label>
+	                    <input name="quantity" class="form-control" required value="<?php echo $row[2]; ?>"></input>
+	                </div>
+	               
+	                
+					<?php
+					}
+				?>
                 <input type="hidden" name="type" class="form-control" value="<?php echo $type; ?>">
                 <button type="submit" class="btn btn-default"><?php echo $submit;?></button>
                 <button type="reset" class="btn btn-default"><?php echo $reset;?></button>

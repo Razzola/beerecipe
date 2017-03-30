@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="index.php?p=view&type=ing">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -71,7 +71,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="index.php?p=view&type=prd">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="index.php?p=view&type=rec">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -115,7 +115,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="index.php?p=view&type=wh">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

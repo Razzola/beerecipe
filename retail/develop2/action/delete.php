@@ -5,45 +5,21 @@ $type = "";
 
 if ( isset($_GET['type']) ) {
 	$type = $_GET['type'];
-		
-	if ( $type == 'ing' and isset($_GET['uid']) ) {
-		
-		$uid = $_GET['uid'];
-			
-		//clean relation product, recipe
-		$result = $mysqli->query("SELECT uid FROM `products` WHERE ingredients_uid = '$uid'") or die($mysqli->error);
-	
-		while ($result != null ) {
-			$product_id = $result->fetch_row();
-			$result = $mysqli->query("DELETE FROM `recipe_has_products` WHERE uid = '$product_id[0]'");
-			updateRecipes($product_id[0]);
-		}
-		
-		//clean products
-		$result = $mysqli->query("DELETE FROM `products` WHERE ingredients_uid = '$uid'") or die($mysqli->error);
-		
-		//clean ingredients
-		$result = $mysqli->query("DELETE FROM `ingredients` WHERE uid = '$uid'") or die($mysqli->error);
-		
-	}
-	
-	if ( $type == 'prd' and isset($_GET['uid']) ) {
-	
-		$uid = $_GET['uid'];
-	
-		$result = $mysqli->query("DELETE FROM `recipe_has_products` WHERE products_uid = '$uid'") or die($mysqli->error);
-		$result = $mysqli->query("DELETE FROM `products` WHERE uid = '$uid'") or die($mysqli->error);
-		updateRecipes($uid);
-		
-	}
 	
 	if ( $type == 'rec' and isset($_GET['uid']) ) {
 	
 		$uid = $_GET['uid'];
 	
 		$result = $mysqli->query("DELETE FROM `recipe_has_products` WHERE recipe_uid = '$uid'") or die($mysqli->error);
-		$result = $mysqli->query("DELETE FROM `recièe` WHERE uid = '$uid'") or die($mysqli->error);
+		$result = $mysqli->query("DELETE FROM `recipe` WHERE uid = '$uid'") or die($mysqli->error);
 	}
+	
+	if ( $type == 'wh' and isset($_GET['uid']) ) {
+	
+		$uid = $_GET['uid'];
+	
+		$result = $mysqli->query("DELETE FROM `warehouse` WHERE uid = '$uid'") or die($mysqli->error);
+		}
 	
 }
 
@@ -77,7 +53,7 @@ function updateRecipes($product_id) {
 
 
 
-//header("Location: ../index.php?p=view&type=" . $type);
+header("Location: ../index.php?p=view&type=" . $type);
 
 ?>
 

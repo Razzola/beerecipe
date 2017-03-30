@@ -15,6 +15,14 @@ if ( isset($_GET['type']) ) {
 	
 	}
 	
+	if ( $type == 'wh' and isset($_GET['uid']) and isset($_GET['quantity'])) {
+		$uid = $_GET['uid'];
+		$quantity = $_GET['quantity'];
+	
+		$result = $mysqli->query("UPDATE `warehouse` SET quantity='$quantity' WHERE uid='$uid' ") or die($mysqli->error);
+	
+	}
+	
 	if ( $type == 'rec' and isset($_GET['uid']) and isset($_GET['name']) ) {
 		$uid = $_GET['uid'];
 		$name = $_GET['name'];

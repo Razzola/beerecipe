@@ -41,6 +41,13 @@ function addRow(text){
 	
 }
 
+document.getElementById('deletelink').onclick = function() { 
+	var r = confirm("Are you sure to delete the data?");
+	if (r == false) {
+		return false; 
+		}
+};
+
 
 jQuery.fn.filterByText = function(textbox) {
     return this.each(function() {
