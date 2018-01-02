@@ -150,9 +150,6 @@ if ( isset($_GET['type']) ) {
                         </a>
                         <ul id="wh" class="collapse">
                             <li>
-                                <a href="index.php?p=create&type=wh"><i class="fa fa-fw fa-plus"></i>Create</a>
-                            </li>
-                            <li>
                                 <a href="index.php?p=view&type=wh"><i class="fa fa-fw fa-eye"></i>View</a>
                             </li>
                         </ul>

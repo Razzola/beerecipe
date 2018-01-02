@@ -15,13 +15,6 @@ if ( isset($_GET['type']) ) {
 	
 	}
 	
-	if ( $type == 'wh' and isset($_GET['uid']) and isset($_GET['quantity'])) {
-		$uid = $_GET['uid'];
-		$quantity = $_GET['quantity'];
-	
-		$result = $mysqli->query("UPDATE `warehouse` SET quantity='$quantity' WHERE uid='$uid' ") or die($mysqli->error);
-	
-	}
 	
 	if ( $type == 'rec' and isset($_GET['uid']) and isset($_GET['name']) ) {
 		$uid = $_GET['uid'];
@@ -43,8 +36,8 @@ if ( isset($_GET['type']) ) {
 				$product[1] = $elements[1];
 				//get price
 				$prdQuery=$mysqli->query("SELECT price FROM products WHERE uid=".$product[0]);
-				$product[2] = $prdQuery->fetch_row()[0];
-				$amount=$amount+($product[1]*$product[2]);
+				$product[2] = $prdQuery->fetch_row();
+				$amount=$amount+($product[1]*$product[2][0]);
 				$update="UPDATE `recipe_has_products` SET quantity=".$product[1]." WHERE recipe_uid=".$uid." AND products_uid=".$product[0];
 				$query = $mysqli->query($update)or die($mysqli->error);
 			}
@@ -92,6 +85,15 @@ if ( isset($_GET['type']) ) {
 			$recipe = $recipes->fetch_row();
 			$updateRecipe=$mysqli->query("UPDATE `recipe` SET amount=".$newAmount[1]." WHERE uid=".$newAmount[0]) or die($mysqli->error);
 		}
+	}
+	
+	if ( $type == 'wh' and isset($_GET['uid'])  and isset($_GET['quantity'])) {
+
+		$uid = $_GET['uid'];
+		$quantit = $_GET['quantity'];
+		$position = $_GET['position'];
+	
+		$result = $mysqli->query("UPDATE `products` SET quantity='$quantit', position='$position' WHERE uid='$uid' ") or die($mysqli->error);
 	}
 }
 

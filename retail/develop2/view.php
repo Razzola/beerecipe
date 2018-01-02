@@ -87,8 +87,9 @@ if ( isset($_GET['type']) ) {
                             if ( $type == 'wh' ) {
                             ?>
                             <th>Product</th>
-                            <th>Ingredient</th>
                             <th>Quantity</th>
+                            <th>Position</th>
+                            <th>Action</th>
                             <?php
                             }
                             ?>
@@ -198,10 +199,7 @@ if ( isset($_GET['type']) ) {
                             if ( $type == 'wh' ) {
                             
 	                            $mysqli = new mysqli("localhost", "root", "", "beerecipe");
-	                            $result = $mysqli->query("SELECT a.uid, b.name AS prdname, c.name AS ingname, a.quantity
-															FROM warehouse a 
-															LEFT JOIN products b ON b.uid=a.product_uid
-															LEFT JOIN ingredients c ON c.uid=b.ingredients_uid ");
+	                            $result = $mysqli->query("SELECT uid,name, quantity, position from products ORDER BY name");
 								$row = $result->fetch_row();  
 								                          
                             	while ( $row != null ) {
@@ -211,8 +209,7 @@ if ( isset($_GET['type']) ) {
 	                            <td><?php echo $row[2]; ?></td>
 	                            <td><?php echo $row[3]; ?></td>
 	                            <td>
-	                            	<a id="deletelink" href="action/delete.php?uid=<?php echo $row[0]; ?>&type=<?php echo $type; ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-									<a href="index.php?p=update&uid=<?php echo $row[0]; ?>&type=<?php echo $type; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+	                            	<a href="index.php?p=update&uid=<?php echo $row[0]; ?>&type=<?php echo $type; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
 								</td>
 	                        </tr>
                             <?php
