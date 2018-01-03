@@ -129,47 +129,50 @@
 						$recipe = $recipes->fetch_row();
 						
 					?>
-						<div class="form-group col-xs-12 col-sm-4">
-		                    <label>Name</label>
-		                    <input name="name" class="form-control" value="<?php echo $recipe[1];?>">
-               				<input type="hidden" name="uid" class="form-control col-xs-12 col-sm-4" value="<?php echo $uid; ?>">
-		                </div>
-		                <div class="form-group col-xs-12 col-sm-4">
-	                    <label>Category</label>
-	                    <select class="form-control" name="ingredient" >
-		                   	<option value="">Select category</option>
-	                    	 <?php
-
-							$result = $mysqli->query("SELECT * FROM `category`");
-							$category = $result->fetch_row();
-							
-                            while ( $category != null ) {
-                            	if ($category[0] == $recipe[3]){
-	                            	?>
-		                            	<option value="<?php echo $category[0]; ?>" selected><?php echo $category[1]; ?></option>
-	                            	<?php
-                            	}else{
-                            		?>
-                            			<option value="<?php echo $category[0]; ?>"><?php echo $category[1]; ?></option>
-                            		<?php
-                            	}
-                            
-	                            $category = $result->fetch_row();
-                            }
-                            ?>
-	                    </select>
-	                </div>
-		                
-               		<div class="form-group col-xs-12 col-sm-4">	
-		                <label>Amount</label>
-		                 <p><?php echo $recipe[4];?></p>
-		            </div>
+					<div div class="form-group col-xs-12 col-sm-6">
+							<div class="form-group col-xs-12 col-sm-6" style="margin-left: -15px;">
+			                    <label>Name</label>
+			                    <input name="name" class="form-control" value="<?php echo $recipe[1];?>">
+	               				<input type="hidden" name="uid" class="form-control col-xs-12 col-sm-4" value="<?php echo $uid; ?>">
+			                </div>
+			                <div class="form-group col-xs-12 col-sm-6">
+		                    <label>Category</label>
+		                    <select class="form-control" name="ingredient" >
+			                   	<option value="">Select category</option>
+		                    	 <?php
 	
-		                <div class="form-group  col-xs-12 col-sm-12">
-		                    <label>Description</label>
-		                    <textarea name="desc" class="form-control" rows="3" value="<?php echo $recipe[2];?>"></textarea>
+								$result = $mysqli->query("SELECT * FROM `category`");
+								$category = $result->fetch_row();
+								
+	                            while ( $category != null ) {
+	                            	if ($category[0] == $recipe[3]){
+		                            	?>
+			                            	<option value="<?php echo $category[0]; ?>" selected><?php echo $category[1]; ?></option>
+		                            	<?php
+	                            	}else{
+	                            		?>
+	                            			<option value="<?php echo $category[0]; ?>"><?php echo $category[1]; ?></option>
+	                            		<?php
+	                            	}
+	                            
+		                            $category = $result->fetch_row();
+	                            }
+	                            ?>
+		                    </select>
 		                </div>
-	                <table class="table table-bordered table-hover table-striped ">
+			                
+		                <div class="form-group ">
+		                    <label>Description</label>
+		                    <textarea style="width:94%;" name="desc" class="form-control" rows="3" value="<?php echo $recipe[2];?>"></textarea>
+		                </div>
+	               		<div class="form-group ">	
+			                <label>Amount</label>
+			                 <p><?php echo $recipe[4];?></p>
+			            </div>
+		            </div>
+		            <img width="50%" alt="<?php echo $recipe[1];?>" src="recipeImages/<?php echo $recipe[1];?>.jpg">
+
+	                <table class="table table-bordered table-hover table-striped " style="margin-top:10px;">
                     <thead>
                         <tr>
                             <th>Product</th>
