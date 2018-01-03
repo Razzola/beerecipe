@@ -99,7 +99,7 @@
 		                   	<option value="">Select product</option>
 	                    	 <?php
 
-							$result = $mysqli->query("SELECT * FROM `ingredients`");
+							$result = $mysqli->query("SELECT * FROM `ingredients` order by name");
 							$ingredient = $result->fetch_row();
 							
                             while ( $ingredient != null ) {

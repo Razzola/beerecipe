@@ -39,7 +39,6 @@ if ( isset($_GET['type']) ) {
                             <?php
                             if ( $type == 'ing' ) {
                             ?>
-                            <th>#</th>
                             <th>Name</th>
                             <th>Description</th>
                             <th>Action</th>
@@ -125,7 +124,7 @@ if ( isset($_GET['type']) ) {
                             if ( $type == 'ing' ) {
                             
 	                            $mysqli = new mysqli("localhost", "root", "", "beerecipe");
-	                            $result = $mysqli->query("SELECT * FROM `ingredients`");
+	                            $result = $mysqli->query("SELECT name, description FROM `ingredients` ORDER BY name");
 								$row = $result->fetch_row();  
 								                          
                             	while ( $row != null ) {
@@ -133,7 +132,6 @@ if ( isset($_GET['type']) ) {
                         	<tr>
 	                            <td><?php echo $row[0]; ?></td>
 	                            <td><?php echo $row[1]; ?></td>
-	                            <td><?php echo $row[2]; ?></td>
 	                            <td>
 									<a href="index.php?p=update&uid=<?php echo $row[0]; ?>&type=<?php echo $type; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
 								</td>
@@ -149,7 +147,7 @@ if ( isset($_GET['type']) ) {
                             
 	                            $mysqli = new mysqli("localhost", "root", "", "beerecipe");
 	                            $result = $mysqli->query("SELECT a.name,a.description,a.price, b.name, a.uid FROM products a
-															left join ingredients b on a.ingredients_uid=b.uid ");
+															left join ingredients b on a.ingredients_uid=b.uid order by a.name");
 								$row = $result->fetch_row();  
 								                          
                             	while ( $row != null ) {

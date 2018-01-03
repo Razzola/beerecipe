@@ -85,7 +85,7 @@
 	                    <select class="form-control" name="ingredient">
 	                    	 <?php
 
-							$result = $mysqli->query("SELECT * FROM `ingredients`");
+							$result = $mysqli->query("SELECT * FROM `ingredients` order by name");
 							$row = $result->fetch_row();
 							
                             while ( $row != null ) {

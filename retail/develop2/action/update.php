@@ -97,7 +97,7 @@ if ( isset($_GET['type']) ) {
 	}
 }
 
-header("Location: ../index.php?p=view&type=" . $type);
+//header("Location: ../index.php?p=view&type=" . $type);
 
 //
 ?>
