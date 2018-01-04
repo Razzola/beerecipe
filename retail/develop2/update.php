@@ -170,7 +170,7 @@
 			                 <p><?php echo $recipe[4];?></p>
 			            </div>
 		            </div>
-		            <img width="50%" alt="<?php echo $recipe[1];?>" src="recipeImages/<?php echo $recipe[1];?>.jpg">
+		            <img width="50%" alt="<?php echo $recipe[1];?>" src="recipeImages/<?php echo $recipe[1];?>-0.jpg">
 
 	                <table class="table table-bordered table-hover table-striped " style="margin-top:10px;">
                     <thead>
