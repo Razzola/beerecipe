@@ -153,6 +153,16 @@ if ( isset($_GET['type']) ) {
                                 <a href="index.php?p=view&type=wh"><i class="fa fa-fw fa-eye"></i>View</a>
                             </li>
                         </ul>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#ca">
+                            <i class="fa fa-fw fa-calculator"></i>
+                            Calculate
+                            <i class="fa fa-fw fa-caret-down"></i>
+                        </a>
+                        <ul id="ca" class="collapse">
+                            <li>
+                                <a href="index.php?p=calculator"><i class="fa fa-fw fa-magic"></i>AAU vs weight</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
