@@ -22,6 +22,7 @@ if ( isset($_GET['type']) ) {
 	
 	$submit="Submit";
 	$reset="Reset";
+	$sticker="Sticker";
 }
 ?>
 <!DOCTYPE html>
