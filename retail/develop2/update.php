@@ -163,7 +163,7 @@
 			                
 		                <div class="form-group ">
 		                    <label>Description</label>
-		                    <textarea style="width:94%;" name="desc" class="form-control" rows="3" value="<?php echo $recipe[2];?>"></textarea>
+		                    <textarea style="width:94%;" name="desc" class="form-control" rows="3"><?php echo $recipe[2];?></textarea>
 		                </div>
 	               		<div class="form-group ">	
 			                <label>Amount</label>
