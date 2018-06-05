@@ -1,6 +1,6 @@
 <?php 
 //Parameter
-$charLimit=50;
+$charLimit=30;
 $charSize=35;
 $rotation=0;
 $startFromY=30;		//y start from;
@@ -27,15 +27,10 @@ $recipe = $recipes->fetch_row();
 $text = $recipe[2];
 
 //from Descripton make rows
-$lines = str_split($text, $charLimit);
-$testText="";
-foreach($lines as $line)
-{
-	$testText.=$line."\r\n";
-}
+$formattedText = wordwrap($text, $charLimit, "\n");
 
 // Scrivo il testo all'interno dell'immagine
-imagettftext($stickerImg, $charSize, $rotation, $startFromY, $startFromX, $txtColor, $font, $testText);
+imagettftext($stickerImg, $charSize, $rotation, $startFromY, $startFromX, $txtColor, $font, $formattedText);
 
 // Definisco l'intestazione del file
 // indicando che si tratta di una immagine Jpeg
