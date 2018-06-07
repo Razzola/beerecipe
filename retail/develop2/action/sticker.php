@@ -3,7 +3,7 @@
 $charLimit=30;
 $charSize=35;
 $rotation=0;
-$startFromY=30;		//y start from;
+$startFromY=80;		//y start from;
 $startFromX=200;	//x start from;
 $font="../fonts/arial.ttf";
 
