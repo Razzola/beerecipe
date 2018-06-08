@@ -63,10 +63,11 @@ if ( isset($_GET['type']) ) {
                             if ( $type == 'rec' ) {
                             ?>
                             <th>Name</th>
-                            <th>Description</th>
+                            <th width="500px">Description</th>
                             <th>Amount</th>
                             <th>Category</th>
-                            <th>Action</th>
+                            <th width="400px">Upload Image</th>
+                            <th>Actions</th>
                             <?php
                             }
                             ?>
@@ -191,6 +192,7 @@ if ( isset($_GET['type']) ) {
 	                            <td>
 	                            	<a id="deletelink" href="action/delete.php?uid=<?php echo $row[0]; ?>&type=<?php echo $type; ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 									<a href="index.php?p=update&uid=<?php echo $row[0]; ?>&type=<?php echo $type; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+               						<a href="action/sticker.php?uid=<?php echo $row[0]; ?>"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>	
 								</td>
 	                        </tr>
                             <?php

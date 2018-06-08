@@ -249,8 +249,7 @@
                 <input type="hidden" name="type" class="form-control" value="<?php echo $type; ?>">
                 <button type="submit" class="btn btn-default"><?php echo $submit;?></button>
                 <button type="reset" class="btn btn-default"><?php echo $reset;?></button>
-                <?php  if ( $type == 'rec' ) {?><a href="action/sticker.php?uid=<?php echo $uid; ?>" class="btn btn-default"><?php echo $sticker;?></button><?php }?>
-
+                <?php  if ( $type == 'rec' ) {?><a href="action/sticker.php?uid=<?php echo $uid; ?>" class="btn btn-default"><?php echo $sticker;?></a><?php }?>
             </form>
         </div>
     </div>
