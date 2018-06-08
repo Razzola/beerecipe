@@ -3,8 +3,8 @@
 $charLimit=30;
 $charSize=35;
 $rotation=0;
-$startFromY=80;		//y start from;
-$startFromX=200;	//x start from;
+$startFromY=210;		//y start from;
+$startFromX=190;	//x start from;
 $font="../fonts/arial.ttf";
 
 // Create new image
