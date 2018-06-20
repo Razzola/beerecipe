@@ -4,11 +4,16 @@
     	<br/>
         <div class="panel-body">
 	        <h3 class="panel-title"> Converter</h3>
-	        <div class="form-group">
-	        	<label>AAU</label><input name="aau" class="form-control" value="">
+	        <br/>
+	        <div class="form-group  col-xs-12 col-sm-6">
+	        	<label>AAU recipe</label><input id="aau" class="form-control" value="" onchange="gramsResult()">
 	        </div>	
-	        <div class="form-group">
-	        	<label>Grams</label><input name="grams" class="form-control" value="">
+	        
+	        <div class="form-group  col-xs-12 col-sm-6">
+	        	<label>Alfa Acid Hop</label><input id="aah" class="form-control" value="" onchange="gramsResult()">
+	        </div>	
+	        <div class="form-group col-xs-12 col-sm-3">
+	        	<label>Grams</label><input id="grams" class="form-control" value="">
         	</div>
         </div>
     </div>

@@ -38,7 +38,14 @@ function addRow(text){
 	newIng = newIng.replace('<label>Price</label>','');
 	eleForm.outerHTML +=  newIng ;
 	count++;
-	
+}
+
+function gramsResult(){
+	var aau = document.getElementById("aau").value;
+	var aah = document.getElementById("aah").value;
+	var grams = document.getElementById("grams").value;
+	if ((aau!=0)&& (aah!=0))
+		grams=aau+aah;
 }
 
 document.getElementById('deletelink').onclick = function() { 
