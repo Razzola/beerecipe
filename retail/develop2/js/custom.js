@@ -41,11 +41,11 @@ function addRow(text){
 }
 
 function gramsResult(){
-	var aau = document.getElementById("aau").value;
-	var aah = document.getElementById("aah").value;
-	var grams = document.getElementById("grams").value;
-	if ((aau!=0)&& (aah!=0))
-		grams=aau+aah;
+	var aau = parseInt(document.getElementById("aau").value);
+	var aah = parseInt(document.getElementById("aah").value);
+	var gramsControl = document.getElementById("grams");
+	if ((aau>0)&& (aah>0))
+		gramsControl.setAttribute('value',aau+aah);
 }
 
 document.getElementById('deletelink').onclick = function() { 
