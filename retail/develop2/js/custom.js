@@ -1,4 +1,5 @@
 var count = 1
+var aauIndex = 28
 
 function getProducts(ingNameEle){
 	var prodNameEle=ingNameEle.replace('ingredient','product');
@@ -40,12 +41,20 @@ function addRow(text){
 	count++;
 }
 
-function gramsResult(){
+function getGrams(){
 	var aau = parseInt(document.getElementById("aau").value);
 	var aah = parseInt(document.getElementById("aah").value);
+	var lt = parseInt(document.getElementById("lt").value);
 	var gramsControl = document.getElementById("grams");
-	if ((aau>0)&& (aah>0))
-		gramsControl.setAttribute('value',aau+aah);
+	if ((aau>0)&& (aah>0)&& (lt>0)){
+		var grams = setGrams(aau,aah,lt);
+		gramsControl.setAttribute('value',grams);
+	}
+}
+
+function setGrams(aah,aau,lt){
+	//puts calcules here
+	return aau+aah+lt;
 }
 
 document.getElementById('deletelink').onclick = function() { 

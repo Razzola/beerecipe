@@ -250,6 +250,13 @@
                 <button type="submit" class="btn btn-default"><?php echo $submit;?></button>
                 <button type="reset" class="btn btn-default"><?php echo $reset;?></button>
                 <?php  if ( $type == 'rec' ) {?><a href="action/sticker.php?uid=<?php echo $uid; ?>" class="btn btn-default"><?php echo $sticker;?></a><?php }?>
+				  <!-- Trigger the modal with a button -->
+				  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#bitterCalculate"><?php echo $bitterCalculate;?></button>
+				
+				  <!-- Modal -->
+				  <?php include "calculator.php";?>
+				  <!-- End Modal -->
+				</div>
             </form>
         </div>
     </div>

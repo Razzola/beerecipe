@@ -20,10 +20,9 @@ if ( isset($_GET['type']) ) {
 			$name = 'warehouse';
 	}
 	
-	$submit="Submit";
-	$reset="Reset";
-	$sticker="Sticker";
 }
+
+include "dictionary/all.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
