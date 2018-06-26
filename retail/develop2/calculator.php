@@ -27,3 +27,27 @@
       </div>
     </div>
  </div>
+ 
+ 
+ <!-- div class="modal-body">-->
+	        <div class="panel-body">
+		        <label>Time</label>
+                    <select class="form-control col-xs-12 col-sm-3" id="time" onchange="getIBU()">
+	                   	<option value="5">0-5 mins</option>
+	                </select>
+		        <div class="form-group  col-xs-12 col-sm-3">
+		        	<label>Alfa Acid Hop</label><input id="aah" class="form-control" value="" onchange="getIBU()">
+		        </div>	
+		        <div class="form-group  col-xs-12 col-sm-3">
+		        	<label>Liter</label><input id="lt" class="form-control" value="" onchange="getIBU()">
+		        </div>
+		        <div class="form-group col-xs-12 col-sm-3">
+		        	<label>Grams</label><input id="grams" class="form-control" onchange="getIBU()">
+	        	</div>
+		        <div class="form-group col-xs-12 col-sm-3">
+		        	<label>IBU</label><input id="ibu" class="form-control" value="">
+	        	</div>
+	        </div>
+      <!--   </div> -->
+      
+ <script src="js/custom.js"></script>

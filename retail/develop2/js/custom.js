@@ -57,6 +57,32 @@ function setGrams(aah,aau,lt){
 	return aau+aah+lt;
 }
 
+function poundToGrams(pound){
+	return pound*28,34;
+}
+
+function gramsToPound(grams){
+	return grams/28,34;
+}
+
+function getIBU(){
+	var aah = parseInt(document.getElementById("aah").value);
+	var lt = parseInt(document.getElementById("lt").value);
+	var lt = parseInt(document.getElementById("time").value);
+	var grams = parseInt(document.getElementById("grams").value);
+	var ibuControl = document.getElementById("ibu");
+	console.log("aah=".aah." lt=".lt." time=".time." grams=".grams);
+	if ((aah>0) && (time>0)&&(lt>0) && (grams>0)){
+			var ibu = setIBU(time,aah,lt,grams);
+			ibuControl.setAttribute('value',ibu);
+	}
+	
+}
+
+function setIBU(time,aah,lt,grams){
+	return (grams*aah*time)/(10*lt)
+}
+
 document.getElementById('deletelink').onclick = function() { 
 	var r = confirm("Are you sure to delete the data?");
 	if (r == false) {
