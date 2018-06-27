@@ -31,20 +31,31 @@
  
  <!-- div class="modal-body">-->
 	        <div class="panel-body">
-		        <label>Time</label>
-                    <select class="form-control col-xs-12 col-sm-3" id="time" onchange="getIBU()">
+	        	<div class="form-group col-xs-12 col-sm-3">
+		        	<label>Time</label>
+                    <select class="form-control" id="time_ibu" onchange="getIBU()">
+	                   	<option value="">Select time</option>
 	                   	<option value="5">0-5 mins</option>
+	                   	<option value="7">6 - 10 mins</option>
+						<option value="8">11 - 15 mins</option>
+						<option value="10,1">16 - 20 mins</option>
+						<option value="12,1">21 - 25 mins</option>
+						<option value="15,3">26 - 30 mins</option>
+						<option value="18,8">31 - 35 mins</option>
+						<option value="22,8">36 - 40 mins</option>
+						<option value="26,9">41 - 45 mins</option>
 	                </select>
+	            </div>
 		        <div class="form-group  col-xs-12 col-sm-3">
-		        	<label>Alfa Acid Hop</label><input id="aah" class="form-control" value="" onchange="getIBU()">
+		        	<label>Alfa Acid Hop</label><input id="aah_ibu" class="form-control" value="" onchange="getIBU()">
 		        </div>	
 		        <div class="form-group  col-xs-12 col-sm-3">
-		        	<label>Liter</label><input id="lt" class="form-control" value="" onchange="getIBU()">
+		        	<label>Liter</label><input id="lt_ibu" class="form-control" value="" onchange="getIBU()">
 		        </div>
 		        <div class="form-group col-xs-12 col-sm-3">
-		        	<label>Grams</label><input id="grams" class="form-control" onchange="getIBU()">
+		        	<label>Grams</label><input id="grams_ibu" class="form-control" onchange="getIBU()">
 	        	</div>
-		        <div class="form-group col-xs-12 col-sm-3">
+		        <div class="form-group col-xs-12 col-sm-12">
 		        	<label>IBU</label><input id="ibu" class="form-control" value="">
 	        	</div>
 	        </div>

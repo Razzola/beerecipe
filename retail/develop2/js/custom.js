@@ -66,12 +66,12 @@ function gramsToPound(grams){
 }
 
 function getIBU(){
-	var aah = parseInt(document.getElementById("aah").value);
-	var lt = parseInt(document.getElementById("lt").value);
-	var lt = parseInt(document.getElementById("time").value);
-	var grams = parseInt(document.getElementById("grams").value);
+	var aah = parseInt(document.getElementById("aah_ibu").value);
+	var lt = parseInt(document.getElementById("lt_ibu").value);
+	var time = parseInt(document.getElementById("time_ibu").value);
+	var grams = parseInt(document.getElementById("grams_ibu").value);
 	var ibuControl = document.getElementById("ibu");
-	console.log("aah=".aah." lt=".lt." time=".time." grams=".grams);
+	console.log("aah="+aah+" lt="+lt+" time="+time+" grams="+grams);
 	if ((aah>0) && (time>0)&&(lt>0) && (grams>0)){
 			var ibu = setIBU(time,aah,lt,grams);
 			ibuControl.setAttribute('value',ibu);
