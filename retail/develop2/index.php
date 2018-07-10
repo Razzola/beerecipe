@@ -21,7 +21,7 @@ if ( isset($_GET['type']) ) {
 	}
 	
 }
-
+$root="C:/xampp/htdocs/beerecipe/retail/develop2";
 include "dictionary/all.php";
 ?>
 <!DOCTYPE html>

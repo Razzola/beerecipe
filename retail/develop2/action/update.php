@@ -20,6 +20,8 @@ if ( isset($_GET['type']) ) {
 		$uid = $_GET['uid'];
 		$name = $_GET['name'];
 		$desc = $_GET['desc'];
+		$ibu = $_GET['ibu'];
+		$alcool= $_GET['alcool'];
 	
 	
 		$url = $_SERVER['REQUEST_URI'];
@@ -43,8 +45,14 @@ if ( isset($_GET['type']) ) {
 			}
 				
 		}
-
-		$result = $mysqli->query("UPDATE `recipe` SET amount='$amount',name='$name', description='$desc' WHERE uid='$uid' ") or die($mysqli->error);
+		
+		//if developed in order to not overwrite ibu value bu save button
+		if ($ibu!="")
+			$ibufilter=", ibu='$ibu'";
+		else
+			$ibufilter='';
+		/////////////////
+		$result = $mysqli->query("UPDATE `recipe` SET amount='$amount',name='$name', description='$desc'".$ibufilter.", alcool='$alcool' WHERE uid='$uid' ") or die($mysqli->error);
 		
 	}
 
@@ -96,9 +104,12 @@ if ( isset($_GET['type']) ) {
 		$result = $mysqli->query("UPDATE `products` SET quantity='$quantit', position='$position' WHERE uid='$uid' ") or die($mysqli->error);
 	}
 }
-
-header("Location: ../index.php?p=view&type=" . $type);
-
+if ( $type == 'rec' and isset($_GET['uid'])) {
+	header("Location: ../index.php?p=update&type=" . $type."&uid=".$uid."");
+}
+else {
+	header("Location: ../index.php?p=view&type=" . $type);
+}
 //
 ?>
 

@@ -150,7 +150,7 @@
 				
 				<?php
 					if ( $type == 'rec' ) {
-						$recipes = $mysqli->query("SELECT uid,name,description,category,amount FROM `recipe` WHERE uid =".$uid);
+						$recipes = $mysqli->query("SELECT uid,name,description,category,amount,ibu,alcool FROM `recipe` WHERE uid =".$uid);
 						$recipe = $recipes->fetch_row();
 						
 					?>
@@ -190,10 +190,21 @@
 		                    <label>Description</label>
 		                    <textarea style="width:94%;" name="desc" class="form-control" rows="3"><?php echo $recipe[2];?></textarea>
 		                </div>
-	               		<div class="form-group ">	
+	               		<div class="form-group col-xs-12 col-sm-2">	
 			                <label>Amount</label>
 			                 <p><?php echo $recipe[4];?></p>
 			            </div>
+	               		<div class="form-group col-xs-12 col-sm-2">	
+			                <label>IBU</label>
+			                 <p><?php echo $recipe[5];?></p>
+			            </div>
+	               		<div class="form-group col-xs-12 col-sm-2">	
+			                <label>Alcool</label>
+			                <input name="alcool" class="form-control" value="<?php echo $recipe[6];?>">
+			            </div>
+	               		<div class="form-group col-xs-12 col-sm-2" >	
+			            	<button style="margin-top: 10px;" type="button" class="btn btn-default" data-toggle="modal" data-target="#IBUCalculate"><?php echo $IBUCalculate;?></button>
+	               		</div>
 		            </div>
 		            <img width="50%" alt="<?php echo $recipe[1];?>" src="recipeImages/<?php echo $recipe[1];?>-0.jpg">
 
@@ -277,7 +288,7 @@
                 <?php  if ( $type == 'rec' ) {?><a href="action/sticker.php?uid=<?php echo $uid; ?>" class="btn btn-default"><?php echo $sticker;?></a><?php }?>
 				  <!-- Trigger the modal with a button -->
 				  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#bitterCalculate"><?php echo $bitterCalculate;?></button>
-				
+				  
 				  <!-- Modal -->
 				  <?php include "calculator.php";?>
 				  <!-- End Modal -->
