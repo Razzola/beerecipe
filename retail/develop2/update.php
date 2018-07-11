@@ -285,13 +285,15 @@
                 <input type="hidden" name="type" class="form-control" value="<?php echo $type; ?>">
                 <button type="submit" class="btn btn-default"><?php echo $submit;?></button>
                 <button type="reset" class="btn btn-default"><?php echo $reset;?></button>
-                <?php  if ( $type == 'rec' ) {?><a href="action/sticker.php?uid=<?php echo $uid; ?>" class="btn btn-default"><?php echo $sticker;?></a><?php }?>
+                <?php  if ( $type == 'rec' ) {?>
 				  <!-- Trigger the modal with a button -->
 				  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#bitterCalculate"><?php echo $bitterCalculate;?></button>
+				  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#StickerSize"><?php echo $sticker;?></button>
 				  
 				  <!-- Modal -->
-				  <?php include "calculator.php";?>
+				  <?php include "modals.php";?>
 				  <!-- End Modal -->
+				<?php }?>
 				</div>
             </form>
         </div>

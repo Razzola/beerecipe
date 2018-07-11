@@ -26,6 +26,11 @@ function setPrice(prodNameEle){
 	
 }
 
+function setLinkToSticker(){
+	var stickersize = parseInt(document.getElementById("stickersize").value);
+	document.getElementById("linkToSticker").setAttribute('href',document.getElementById("linkToSticker").getAttribute('href')+"&size="+stickersize);
+}
+
 function addRow(text){
 	var eleForm = document.getElementsByName("otherIng")[0];
 	var newIng = text.replace('ingredient','ingredient'+count);

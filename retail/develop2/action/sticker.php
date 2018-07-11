@@ -9,8 +9,62 @@ $startIbuFromY=750;		//y ibu start from;
 $startIbuFromX=1275;	//x ibu start from;
 $startAlcoolFromY=175;//y alcool start from;
 $startAlcoolFromX=1275;//x alccol start from;
+
+//Set size for 1l sticker
+if(isset($_GET['size'])&& ($_GET['size'])==100 ){
+	$charLimit=30;
+	$charSize=35;
+	$rotation=0;
+	$startFromY=210;		
+	$startFromX=190;	
+	$startIbuFromY=750;		
+	$startIbuFromX=1075;	
+	$startAlcoolFromY=175;
+	$startAlcoolFromX=1075;
+}
+//Set size for 75cl sticker
+if(isset($_GET['size'])&& ($_GET['size'])==100 ){
+	$charLimit=30;
+	$charSize=35;
+	$rotation=0;
+	$startFromY=210;
+	$startFromX=190;
+	$startIbuFromY=750;
+	$startIbuFromX=1075;
+	$startAlcoolFromY=175;
+	$startAlcoolFromX=1075;
+}
+//Set size for 50cl sticker
+if(isset($_GET['size'])&& ($_GET['size'])==100 ){
+	$charLimit=30;
+	$charSize=35;
+	$rotation=0;
+	$startFromY=210;
+	$startFromX=190;
+	$startIbuFromY=750;
+	$startIbuFromX=1075;
+	$startAlcoolFromY=175;
+	$startAlcoolFromX=1075;
+}
+
+//Set size for 33cl sticker
+if(isset($_GET['size'])&& ($_GET['size'])==100 ){
+	$charLimit=30;
+	$charSize=35;
+	$rotation=0;
+	$startFromY=210;
+	$startFromX=190;
+	$startIbuFromY=750;
+	$startIbuFromX=1075;
+	$startAlcoolFromY=175;
+	$startAlcoolFromX=1075;
+}
+///////////////////////////
+
+
 $root="C:/xampp/htdocs/beerecipe/retail/develop2";
 $font=$root.'/fonts/arial.ttf';
+
 // Create new image
 $stickerImg = imagecreatefromjpeg($root.'/stickers/BlackSticker.jpg');
 
