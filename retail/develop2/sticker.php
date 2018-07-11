@@ -9,9 +9,13 @@ $startIbuFromY=750;		//y ibu start from;
 $startIbuFromX=1275;	//x ibu start from;
 $startAlcoolFromY=175;//y alcool start from;
 $startAlcoolFromX=1275;//x alccol start from;
+if (isset ($_GET['size']))
+	$size=$_GET['size'];
+else 
+	$size=100;
 
 //Set size for 1l sticker
-if(isset($_GET['size'])&& ($_GET['size'])==100 ){
+if($size==100 ){
 	$charLimit=30;
 	$charSize=35;
 	$rotation=0;
@@ -23,7 +27,7 @@ if(isset($_GET['size'])&& ($_GET['size'])==100 ){
 	$startAlcoolFromX=1075;
 }
 //Set size for 75cl sticker
-if(isset($_GET['size'])&& ($_GET['size'])==100 ){
+if($size==75 ){
 	$charLimit=30;
 	$charSize=35;
 	$rotation=0;
@@ -35,7 +39,7 @@ if(isset($_GET['size'])&& ($_GET['size'])==100 ){
 	$startAlcoolFromX=1075;
 }
 //Set size for 50cl sticker
-if(isset($_GET['size'])&& ($_GET['size'])==100 ){
+if($size==50 ){
 	$charLimit=30;
 	$charSize=35;
 	$rotation=0;
@@ -48,7 +52,7 @@ if(isset($_GET['size'])&& ($_GET['size'])==100 ){
 }
 
 //Set size for 33cl sticker
-if(isset($_GET['size'])&& ($_GET['size'])==100 ){
+if(isset($_GET['size'])&& ($_GET['size'])==33 ){
 	$charLimit=30;
 	$charSize=35;
 	$rotation=0;
