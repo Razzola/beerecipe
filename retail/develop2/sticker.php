@@ -3,12 +3,13 @@
 $charLimit=30;
 $charSize=35;
 $rotation=0;
-$startFromY=210;		//y start from;
-$startFromX=190;	//x start from;
-$startIbuFromY=750;		//y ibu start from;
-$startIbuFromX=1275;	//x ibu start from;
-$startAlcoolFromY=175;//y alcool start from;
-$startAlcoolFromX=1275;//x alccol start from;
+$startFromX=210;		//y start from;
+$startFromY=190;	//x start from;
+$startIbuFromX=750;		//x ibu start from;
+$startAlcoolFromX=175;//x alcool start from;
+$startSizeFromX=475;	//x size start from;
+$Y=1250;
+$textY=150;
 if (isset ($_GET['size']))
 	$size=$_GET['size'];
 else 
@@ -22,33 +23,34 @@ if($size==100 ){
 	$startFromY=210;		
 	$startFromX=190;	
 	$startIbuFromY=750;		
-	$startIbuFromX=1075;	
-	$startAlcoolFromY=175;
-	$startAlcoolFromX=1075;
+	$startAlcoolFromX=175;
+	$startSizeFromY=475;
+	$textY=150;
+	$Y=1250;
 }
 //Set size for 75cl sticker
 if($size==75 ){
 	$charLimit=30;
 	$charSize=35;
 	$rotation=0;
-	$startFromY=210;
-	$startFromX=190;
-	$startIbuFromY=750;
-	$startIbuFromX=1075;
-	$startAlcoolFromY=175;
-	$startAlcoolFromX=1075;
+	$startFromX=210;
+	$startFromY=190;
+	$startIbuFromX=750;
+	$startAlcoolFromX=200;
+	$startSizeFromX=430;
+	$Y=1250;	
 }
 //Set size for 50cl sticker
 if($size==50 ){
 	$charLimit=30;
 	$charSize=35;
 	$rotation=0;
-	$startFromY=210;
-	$startFromX=190;
-	$startIbuFromY=750;
-	$startIbuFromX=1075;
+	$startFromX=210;
+	$startFromY=190;
+	$startIbuFromX=750;
 	$startAlcoolFromY=175;
-	$startAlcoolFromX=1075;
+	$startSizeFromX=430;
+	$Y=1250;		
 }
 
 //Set size for 33cl sticker
@@ -56,12 +58,11 @@ if(isset($_GET['size'])&& ($_GET['size'])==33 ){
 	$charLimit=30;
 	$charSize=35;
 	$rotation=0;
-	$startFromY=210;
-	$startFromX=190;
-	$startIbuFromY=750;
-	$startIbuFromX=1075;
-	$startAlcoolFromY=175;
-	$startAlcoolFromX=1075;
+	$startFromX=210;
+	$startFromY=190;
+	$startIbuFromX=750;
+	$startAlcoolFromX=175;
+	$startSizeFromX=430;	
 }
 ///////////////////////////
 
@@ -93,9 +94,10 @@ $alcool=intval($recipe[6])."% vol.";
 $formattedText = wordwrap($text, $charLimit, "\n");
 
 // Scrivo il testo all'interno dell'immagine
-imagettftext($stickerImg, $charSize, $rotation, $startFromY, $startFromX, $txtColor, $font, $formattedText);
-imagettftext($stickerImg, $charSize, $rotation, $startIbuFromY, $startIbuFromX, $txtColor, $font, $ibu);
-imagettftext($stickerImg, $charSize, $rotation, $startAlcoolFromY, $startAlcoolFromX, $txtColor, $font, $alcool);
+imagettftext($stickerImg, $charSize, $rotation, $startFromX, $textY, $txtColor, $font, $formattedText);
+imagettftext($stickerImg, $charSize, $rotation, $startIbuFromX, $Y, $txtColor, $font, $ibu);
+imagettftext($stickerImg, $charSize, $rotation, $startAlcoolFromX, $Y, $txtColor, $font, $alcool);
+imagettftext($stickerImg, $charSize, $rotation, $startSizeFromX, $Y, $txtColor, $font, $size." cl");
 
 // Definisco l'intestazione del file
 // indicando che si tratta di una immagine Jpeg

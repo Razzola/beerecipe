@@ -18,7 +18,7 @@
 		                </select>
 		        	</div>
 			        <div class="form-group col-xs-12 col-sm-12">
-                		<a id="linkToSticker" href="index.php?p=sticker?uid=<?php echo $uid; ?>" class="btn btn-default"><?php echo $apply;?> - Size</a>
+                		<a id="linkToSticker" href="sticker.php?uid=<?php echo $uid; ?>" class="btn btn-default"><?php echo $apply;?> - Size</a>
 		        	</div>
 		        </div>
 		    </div>
