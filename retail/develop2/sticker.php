@@ -17,16 +17,16 @@ else
 
 //Set size for 1l sticker
 if($size==100 ){
-	$charLimit=30;
-	$charSize=35;
+	$charLimit=40;
+	$charSize=25;
 	$rotation=0;
 	$startFromY=210;		
-	$startFromX=190;	
-	$startIbuFromY=750;		
-	$startAlcoolFromX=175;
-	$startSizeFromY=475;
+	$startFromX=160;	
+	$startIbuFromX=520;		
+	$startAlcoolFromX=160;
+	$startSizeFromX=350;
 	$textY=150;
-	$Y=1250;
+	$Y=850;
 }
 //Set size for 75cl sticker
 if($size==75 ){
@@ -71,7 +71,7 @@ $root="C:/xampp/htdocs/beerecipe/retail/develop2";
 $font=$root.'/fonts/arial.ttf';
 
 // Create new image
-$stickerImg = imagecreatefromjpeg($root.'/stickers/BlackSticker.jpg');
+$stickerImg = imagecreatefromjpeg($root.'/stickers/BlackSticker_'.$size.'.jpg');
 
 // Define bg color and text 
 $bgColor = imagecolorallocate($stickerImg,000,000,000);
