@@ -17,13 +17,13 @@ else
 
 //Set size for 1l sticker
 if($size==100 ){
-	$charLimit=40;
+	$charLimit=30;
 	$charSize=25;
 	$rotation=0;
 	$startFromY=210;		
 	$startFromX=160;	
-	$startIbuFromX=520;		
-	$startAlcoolFromX=160;
+	$startIbuFromX=500;		
+	$startAlcoolFromX=150;
 	$startSizeFromX=350;
 	$textY=150;
 	$Y=850;
