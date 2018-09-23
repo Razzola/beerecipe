@@ -163,6 +163,20 @@ include "dictionary/all.php";
                                 <a href="index.php?p=calculator"><i class="fa fa-fw fa-magic"></i>AAU vs weight</a>
                             </li>
                         </ul>
+                        
+                        <a href="javascript:;" data-toggle="collapse" data-target="#diary">
+                            <i class="fa fa-calendar-o"></i>
+                            Diary
+                            <i class="fa fa-fw fa-caret-down"></i>
+                        </a>
+                        <ul id="diary" class="collapse">
+                            <li>
+                                <a href="index.php?p=create&type=di"><i class="fa fa-fw fa-plus"></i>Create</a>
+                            </li>
+                            <li>
+                                <a href="index.php?p=view&type=di"><i class="fa fa-fw fa-eye"></i>View</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
