@@ -101,6 +101,7 @@ if ( isset($_GET['type']) ) {
             	<?php include "view/ingredients.php";?>
             	<?php include "view/products.php";?>
             	<?php include "view/warehouse.php";?>
+            	<?php include "view/recipe.php";?>
             	<?php include "view/diary.php";?>
                     </tbody>
                 </table>

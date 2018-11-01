@@ -23,6 +23,7 @@
             	<?php include "update/ingredients.php";?>
             	<?php include "update/products.php";?>
             	<?php include "update/warehouse.php";?>
+            	<?php include "update/recipe.php";?>
                 <input type="hidden" name="type" class="form-control" value="<?php echo $type; ?>">
                 <button type="submit" class="btn btn-default"><?php echo $submit;?></button>
                 <button type="reset" class="btn btn-default"><?php echo $reset;?></button>
