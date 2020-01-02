@@ -51,11 +51,15 @@
 			            </div>
 	               		<div class="form-group col-xs-12 col-sm-2">	
 			                <label>Alcool</label>
-			                <input name="alcool" class="form-control" value="<?php echo $recipe[6];?>">
+			                <p><?php echo $recipe[6];?></p>
 			            </div>
 	               		<div class="form-group col-xs-12 col-sm-2" >	
 			            	<button style="margin-top: 10px;" type="button" class="btn btn-default" data-toggle="modal" data-target="#IBUCalculate"><?php echo $IBUCalculate;?></button>
 	               		</div>
+	               		<div class="form-group col-xs-12 col-sm-2" >
+			            	<button style="margin-top: 10px;" type="button" class="btn btn-default" data-toggle="modal" data-target="#AlcoolCalculate"><?php echo $AlcoolCalculate;?></button>
+	               		</div>
+
 		            </div>
 		            <img width="50%" alt="<?php echo $recipe[1];?>" src="recipeImages/<?php echo $recipe[1];?>-0.jpg">
 

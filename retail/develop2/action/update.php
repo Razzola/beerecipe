@@ -39,20 +39,27 @@ if ( isset($_GET['type']) ) {
 				//get price
 				$prdQuery=$mysqli->query("SELECT price FROM products WHERE uid=".$product[0]);
 				$product[2] = $prdQuery->fetch_row();
-				$amount=$amount+($product[1]*$product[2][0]);
+				$amount=$amount+($product[1]*$product[2][0]/1000);
 				$update="UPDATE `recipe_has_products` SET quantity=".$product[1]." WHERE recipe_uid=".$uid." AND products_uid=".$product[0];
 				$query = $mysqli->query($update)or die($mysqli->error);
 			}
 				
 		}
 		
-		//if developed in order to not overwrite ibu value bu save button
+		//if developed in order to not overwrite ibu value by save button
 		if ($ibu!="")
 			$ibufilter=", ibu='$ibu'";
 		else
 			$ibufilter='';
 		/////////////////
-		$result = $mysqli->query("UPDATE `recipe` SET amount='$amount',name='$name', description='$desc'".$ibufilter.", alcool='$alcool' WHERE uid='$uid' ") or die($mysqli->error);
+		//if developed in order to not overwrite alcool value by save button
+        if ($alcool!="")
+            $alcoolfilter=", alcool='$alcool'";
+        else
+            $alcoolfilter='';
+        /////////////////
+		$desc=mysqli_real_escape_string($mysqli, $desc);
+		$result = $mysqli->query("UPDATE `recipe` SET amount='$amount',name='$name', description='$desc'".$ibufilter." ".$alcoolfilter." WHERE uid='$uid' ") or die($mysqli->error);
 		
 	}
 

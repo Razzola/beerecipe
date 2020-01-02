@@ -39,6 +39,7 @@ if ( isset($_GET['type']) ) {
 		$name = $_GET['name'];
 		$desc = $_GET['desc'];
 		$cat = $_GET['category'];
+		$desc=mysqli_real_escape_string($mysqli, $desc);
 	
 		$result = $mysqli->query("INSERT INTO `recipe` ( uid, name, description, category ) VALUES ( null, '$name', '$desc','$cat' ) ") or die($mysqli->error);
 	
@@ -67,7 +68,7 @@ if ( isset($_GET['type']) ) {
 					}
 					if (strpos($field, "price") !== false){
 						$ingredient[2] = $elements[1];
-						$amount=$amount+($ingredient[1]*$ingredient[2]);
+						$amount=$amount+($ingredient[1]*$ingredient[2]/1000);
 						$insert="INSERT INTO `recipe_has_products` ( recipe_uid, products_uid, quantity ) VALUES (".$recipeUid[0].",".$ingredient[0].",".$ingredient[1].");";
 						//echo $insert."<br/>";
 						$query = $mysqli->query($insert)or die($mysqli->error);
@@ -84,7 +85,7 @@ if ( isset($_GET['type']) ) {
 		$product = $_GET['product'];
 		$quantity = $_GET['quantity'];
 	
-		$result = $mysqli->query("INSERT INTO `warehouse` ( uid, product_uid, quantity ) VALUES ( null, '$product', '$quantity' ) ") or die($mysqli->error);
+		$result = $mysqli->query("INSERT INTO `warehouse` (product_uid, quantity ) VALUES ('$product', '$quantity' ) ") or die($mysqli->error);
 	
 	}
 }

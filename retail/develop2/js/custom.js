@@ -88,6 +88,23 @@ function setIBU(time,aah,lt,grams){
 	return (grams*aah*time)/(10*lt)
 }
 
+
+function getAlcool(){
+	var og = parseInt(document.getElementById("og").value);
+	var fg = parseInt(document.getElementById("fg").value);
+	var alcoolControl = document.getElementById("alcool");
+	console.log("og="+og+" fg="+fg);
+	if ((og>0) && (fg>0)){
+			var alcool = setAlcool(og,fg);
+			alcoolControl.setAttribute('value',alcool);
+	}
+
+}
+
+function setAlcool(og,fg){
+	return Math.round((og-fg)/7.5*10)/10;
+}
+
 document.getElementById('deletelink').onclick = function() { 
 	var r = confirm("Are you sure to delete the data?");
 	if (r == false) {

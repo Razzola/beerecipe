@@ -20,8 +20,7 @@
 				<?php include "create/products.php";?>
 				<?php include "create/recipe.php";?>
 				<?php include "create/warehouse.php";?>
-				<?php include "create/diary.php";?>	
-            	<?php include "create/recipe.php";?>			
+				<?php include "create/diary.php";?>
 				<input type="hidden" name="type" class="form-control" value="<?php echo $type; ?>">
                 <button type="submit" class="btn btn-default"><?php echo $submit;?></button>
                 <button type="reset" class="btn btn-default"><?php echo $reset;?></button>

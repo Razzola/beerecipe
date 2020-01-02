@@ -71,7 +71,7 @@ $root="C:/xampp/htdocs/beerecipe/retail/develop2";
 $font=$root.'/fonts/arial.ttf';
 
 // Create new image
-$stickerImg = imagecreatefromjpeg($root.'/stickers/BlackSticker_'.$size.'.jpg');
+$stickerImg = imagecreatefromjpeg($root.'/stickers/IpaSticker_'.$size.'.jpg');
 
 // Define bg color and text 
 $bgColor = imagecolorallocate($stickerImg,000,000,000);
