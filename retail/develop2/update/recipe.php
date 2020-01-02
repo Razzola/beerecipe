@@ -61,7 +61,7 @@
 	               		</div>
 
 		            </div>
-		            <img width="50%" alt="<?php echo $recipe[1];?>" src="recipeImages/<?php echo $recipe[1];?>-0.jpg">
+		            <div div class="form-group col-xs-12 col-sm-6" style="background: url('recipeImages/Spring Best IPA-0.jpg');background-size: cover;height:450px;background-repeat: no-repeat;background-position: center;"></div>
 
 	                <table class="table table-bordered table-hover table-striped " style="margin-top:10px;">
                     <thead>
