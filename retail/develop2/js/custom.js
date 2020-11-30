@@ -1,6 +1,15 @@
 var count = 1
 var aauIndex = 28
 
+function addAAUField(){
+    var ingredientControl = document.getElementsByName("ingredient")[0];
+    var selectedIngredient = ingredientControl.value;
+    var AAU=document.getElementsByName("aauContainer")[0];
+    if (selectedIngredient == 2 || selectedIngredient == 3)
+        AAU.style.display="block";
+    else
+        AAU.style.display="none";
+}
 function getProducts(ingNameEle){
 	var prodNameEle=ingNameEle.replace('ingredient','product');
 	
@@ -56,6 +65,7 @@ function getGrams(){
 		gramsControl.setAttribute('value',grams);
 	}
 }
+
 
 function setGrams(aah,aau,lt){
 	//puts calcules here

@@ -55,6 +55,7 @@ include "dictionary/all.php";
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link rel="icon" href="favicon.png" type="image/png" />
 
 </head>
 
@@ -215,7 +216,12 @@ include "dictionary/all.php";
         <!-- /#page-wrapper -->
 
     </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.13/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
     <!-- /#wrapper -->
+<script src="js/dataTables.js" defer></script>
 
 
 </body>

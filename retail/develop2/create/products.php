@@ -5,7 +5,6 @@ if ( $type == 'prd' ) {
 				<div class="form-group">
                     <label>Name</label>
                     <input name="name" class="form-control">
-                    <p class="help-block">Name</p>
                 </div>
 
                 <div class="form-group">
@@ -21,7 +20,8 @@ if ( $type == 'prd' ) {
                 
                 <div class="form-group">
                     <label>Ingredient</label>
-                    <select class="form-control" name="ingredient">
+                    <select class="form-control" name="ingredient" onchange="addAAUField()">
+                         <option value="Select ingredient">Select ingredient</option>
                     	 <?php
 
 							$result = $mysqli->query("SELECT * FROM `ingredients` order by name");
@@ -35,6 +35,10 @@ if ( $type == 'prd' ) {
                             }
                             ?>
                     </select>
+                </div>
+                <div class="form-group" name="aauContainer" style="display:none;">
+                    <label>AAU</label>
+                    <input name="AAU" class="form-control">
                 </div>
                 
 				<?php

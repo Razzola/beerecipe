@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+include "dictionary/all.php";
 //Parameter
 $charLimit=30;
 $charSize=35;
@@ -38,7 +40,7 @@ if($size==75 ){
 	$startIbuFromX=750;
 	$startAlcoolFromX=200;
 	$startSizeFromX=430;
-	$Y=1250;	
+	$Y=1250;
 }
 //Set size for 50cl sticker
 if($size==50 ){
@@ -50,7 +52,7 @@ if($size==50 ){
 	$startIbuFromX=750;
 	$startAlcoolFromY=175;
 	$startSizeFromX=430;
-	$Y=1250;		
+	$Y=1250;
 }
 
 //Set size for 33cl sticker
@@ -69,16 +71,6 @@ if(isset($_GET['size'])&& ($_GET['size'])==33 ){
 
 $root="C:/xampp/htdocs/beerecipe/retail/develop2";
 $font=$root.'/fonts/arial.ttf';
-
-// Create new image
-$stickerImg = imagecreatefromjpeg($root.'/stickers/IpaSticker_'.$size.'.jpg');
-
-// Define bg color and text 
-$bgColor = imagecolorallocate($stickerImg,000,000,000);
-$txtColor = imagecolorallocate($stickerImg,255,255,255);
-// Put color on img
-imagefill($stickerImg,0,0,$bgColor);
-
 // Create variable with the text to print
 if ( isset($_GET['uid']) ) {
 	$uid = $_GET['uid'];
@@ -86,6 +78,18 @@ if ( isset($_GET['uid']) ) {
 $mysqli = new mysqli("localhost", "root", "", "beerecipe");
 $recipes = $mysqli->query("SELECT uid,name,description,category,amount,ibu,alcool FROM `recipe` WHERE uid =".$uid);
 $recipe = $recipes->fetch_row();
+// Create new image
+$categoryQuery= $mysqli->query("SELECT name FROM category WHERE uid=".$recipe[3]);
+$category = $categoryQuery->fetch_row();
+$stickerImg = imagecreatefromjpeg($rootImages.'/stickers/'.$category[0].'Sticker_'.$size.'.jpg');
+
+// Define bg color and text 
+$bgColor = imagecolorallocate($stickerImg,255,255,255);
+$txtColor = imagecolorallocate($stickerImg,255,255,255);
+// Put color on img
+imagefill($stickerImg,0,0,$bgColor);
+
+
 $text = $recipe[2];
 $ibu="IBU: ".intval($recipe[5]);
 $alcool=intval($recipe[6])."% vol.";

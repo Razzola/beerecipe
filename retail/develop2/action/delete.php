@@ -6,12 +6,17 @@ $type = "";
 if ( isset($_GET['type']) ) {
 	$type = $_GET['type'];
 	
-	if ( $type == 'rec' and isset($_GET['uid']) ) {
+	if ( $type == 'rec' and isset($_GET['uid']) and !isset($_GET['prd_uid'])) {
 	
 		$uid = $_GET['uid'];
 	
 		$result = $mysqli->query("DELETE FROM `recipe_has_products` WHERE recipe_uid = '$uid'") or die($mysqli->error);
 		$result = $mysqli->query("DELETE FROM `recipe` WHERE uid = '$uid'") or die($mysqli->error);
+	}elseif($type == 'rec' and isset($_GET['uid']) and isset($_GET['prd_uid']))
+	{
+		$uid = $_GET['uid'];
+		$prd_uid= $_GET['prd_uid'];
+		$result = $mysqli->query("DELETE FROM `recipe_has_products` WHERE recipe_uid = '$uid' AND products_uid = '$prd_uid'") or die($mysqli->error);
 	}
 	
 	if ( $type == 'wh' and isset($_GET['uid']) ) {

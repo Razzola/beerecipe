@@ -8,7 +8,7 @@ if ( isset($_GET['type']) ) {
 		
 	if ( $type == 'ing' and isset($_GET['name']) and isset($_GET['desc']) ) {
 		
-		$name = $_GET['name'];
+		$name = mysqli_real_escape_string($mysqli,$_GET['name']);
 		$desc = $_GET['desc'];
 		
 		$result = $mysqli->query("INSERT INTO `ingredients` ( uid, name, description ) VALUES ( null, '$name', '$desc' ) ") or die($mysqli->error);
@@ -17,7 +17,7 @@ if ( isset($_GET['type']) ) {
 	
 	if ( $type == 'cat' and isset($_GET['name']) and isset($_GET['desc']) ) {
 	
-		$name = $_GET['name'];
+		$name = mysqli_real_escape_string($mysqli,$_GET['name']);
 		$desc = $_GET['desc'];
 	
 		$result = $mysqli->query("INSERT INTO `category` ( uid, name, description ) VALUES ( null, '$name', '$desc' ) ") or die($mysqli->error);
@@ -26,17 +26,24 @@ if ( isset($_GET['type']) ) {
 	
 	if ( $type == 'prd' and isset($_GET['name'])  and isset($_GET['price']) and isset($_GET['ingredient']) ) {
 
-		$name = $_GET['name'];
+		$name = mysqli_real_escape_string($mysqli,$_GET['name']);
 		$desc = $_GET['desc'];
 		$price = $_GET['price'];
 		$reference = $_GET['ingredient'];
+
+		if ($reference == 3 || $reference == 2)
+		{
+		}
+		{
+		}
 		
 		$result = $mysqli->query("INSERT INTO `products` ( uid, name, description, price, ingredients_uid ) VALUES ( null, '$name', '$desc', '$price', '$reference' ) ") or die($mysqli->error);
-		
+
+        include "../utils/hopManager.php";
 	}
 	if ( $type == 'rec' and isset($_GET['name'])) {
 		
-		$name = $_GET['name'];
+		$name = mysqli_real_escape_string($mysqli,$_GET['name']);
 		$desc = $_GET['desc'];
 		$cat = $_GET['category'];
 		$desc=mysqli_real_escape_string($mysqli, $desc);
@@ -70,7 +77,7 @@ if ( isset($_GET['type']) ) {
 						$ingredient[2] = $elements[1];
 						$amount=$amount+($ingredient[1]*$ingredient[2]/1000);
 						$insert="INSERT INTO `recipe_has_products` ( recipe_uid, products_uid, quantity ) VALUES (".$recipeUid[0].",".$ingredient[0].",".$ingredient[1].");";
-						//echo $insert."<br/>";
+						echo $insert."<br/>";
 						$query = $mysqli->query($insert)or die($mysqli->error);
 						}
 					

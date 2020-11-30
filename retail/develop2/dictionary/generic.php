@@ -8,4 +8,5 @@
 	$setSize="Set Size";
 	$converter="Converter";
 	$apply="Apply";
+    $rootImages="../../../beerecipe-images/";
 ?>

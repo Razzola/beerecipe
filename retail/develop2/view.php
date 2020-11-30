@@ -33,7 +33,7 @@ if ( isset($_GET['type']) ) {
          </div>
          <br/>
             <div class="table-responsive">
-                <table class="table table-bordered table-hover table-striped">
+                <table id="dtTable" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
                             <?php

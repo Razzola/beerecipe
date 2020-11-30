@@ -26,11 +26,10 @@
             	<?php include "update/recipe.php";?>
                 <input type="hidden" name="type" class="form-control" value="<?php echo $type; ?>">
                 <button type="submit" class="btn btn-default"><?php echo $submit;?></button>
-                <button type="reset" class="btn btn-default"><?php echo $reset;?></button>
+                <!--button type="reset" class="btn btn-default"><?php echo $reset;?></button-->
                 <?php  if ( $type == 'rec' ) {?>
 				  <!-- Trigger the modal with a button -->
-				  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#bitterCalculate"><?php echo $bitterCalculate;?></button>
-				  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#StickerSize"><?php echo $sticker;?></button>
+				  <!-- button type="button" class="btn btn-default" data-toggle="modal" data-target="#bitterCalculate"><?php echo $bitterCalculate;?></button-->
 				  
 				  <!-- Modal -->
 				  <?php include "modals.php";?>

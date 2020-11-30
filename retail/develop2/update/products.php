@@ -1,6 +1,5 @@
 <?php
 	if ( $type == 'prd' ) {
-		
 
 		$result = $mysqli->query("SELECT uid,name,description, price, ingredients_uid FROM `products` WHERE uid =".$uid);
 		$row = $result->fetch_row();
@@ -25,7 +24,7 @@
                 
                 <div class="form-group">
                     <label>Ingredient</label>
-                    <select class="form-control" name="ingredient" >
+                    <select class="form-control" name="ingredient" onchange="addAAUField()">
 	                   	<option value="">Select product</option>
                     	 <?php
 
@@ -48,7 +47,24 @@
                             ?>
                     </select>
                 </div>
+
+                <?php
+                $hopPrd= $mysqli->query("SELECT * from hop where product_id='$uid'");
+                $hopPrdN=$hopPrd->fetch_row();
+                if ($hopPrdN[0] == ''){
+                        $stringDisplay="none";
+                    }else{
+                        $stringDisplay="block";
+                    }
+
+                ?>
+
+                    <div class="form-group" name="aauContainer" style="display:<?php echo $stringDisplay; ?>;">
+                        <label>AAU</label>
+                        <input name="AAU" class="form-control" value="<?php echo $hopPrdN[2]?>">
+                    </div>
                 
 				<?php
+
 	}
 ?>

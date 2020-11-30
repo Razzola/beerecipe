@@ -13,7 +13,7 @@
 			                </div>
 			                <div class="form-group col-xs-12 col-sm-6">
 		                    <label>Category</label>
-		                    <select class="form-control" name="ingredient" >
+		                    <select class="form-control" name="category" >
 			                   	<option value="">Select category</option>
 		                    	 <?php
 	
@@ -39,35 +39,40 @@
 			                
 		                <div class="form-group ">
 		                    <label>Description</label>
-		                    <textarea style="width:94%;" name="desc" class="form-control" rows="3"><?php echo $recipe[2];?></textarea>
+		                    <textarea style="width:94%;height:250px;" name="desc" class="form-control" rows="3"><?php echo $recipe[2];?></textarea>
 		                </div>
-	               		<div class="form-group col-xs-12 col-sm-2">	
+	               		<div class="form-group col-xs-12 col-sm-1">
 			                <label>Amount</label>
 			                 <p><?php echo $recipe[4];?></p>
 			            </div>
-	               		<div class="form-group col-xs-12 col-sm-2">	
+	               		<div class="form-group col-xs-12 col-sm-1" style="margin-left:20px;">
 			                <label>IBU</label>
 			                 <p><?php echo $recipe[5];?></p>
 			            </div>
-	               		<div class="form-group col-xs-12 col-sm-2">	
+	               		<div class="form-group col-xs-12 col-sm-2">
 			                <label>Alcool</label>
 			                <p><?php echo $recipe[6];?></p>
 			            </div>
-	               		<div class="form-group col-xs-12 col-sm-2" >	
+	               		<div class="form-group col-xs-12 col-sm-2" >
 			            	<button style="margin-top: 10px;" type="button" class="btn btn-default" data-toggle="modal" data-target="#IBUCalculate"><?php echo $IBUCalculate;?></button>
 	               		</div>
 	               		<div class="form-group col-xs-12 col-sm-2" >
 			            	<button style="margin-top: 10px;" type="button" class="btn btn-default" data-toggle="modal" data-target="#AlcoolCalculate"><?php echo $AlcoolCalculate;?></button>
 	               		</div>
-
+	               		<div class="form-group col-xs-12 col-sm-2" >
+				            <button style="margin-top: 10px;" type="button" class="btn btn-default" data-toggle="modal" data-target="#StickerSize"><?php echo $sticker;?></button>
+                        </div>
+	               		<div class="form-group col-xs-12 col-sm-1" >
+				            <button style="margin-top: 10px;" type="submit" class="btn btn-default"><?php echo $submit;?></button>
+                        </div>
 		            </div>
-		            <div div class="form-group col-xs-12 col-sm-6" style="background: url('recipeImages/Spring Best IPA-0.jpg');background-size: cover;height:450px;background-repeat: no-repeat;background-position: center;"></div>
+		            <div div class="form-group col-xs-12 col-sm-6" style="background: url('<?php echo $rootImages?>recipeImages/<?php echo $recipe[1];?>-0.jpg');background-size: cover;height:450px;background-repeat: no-repeat;background-position: center;"></div>
 
 	                <table class="table table-bordered table-hover table-striped " style="margin-top:10px;">
                     <thead>
                         <tr>
                             <th>Product</th>
-                            <th>Quantity</th>
+                            <th>Quantity in grams</th>
                             <th>Price</th>
                         </tr>
                     </thead>
@@ -79,31 +84,37 @@
 														WHERE recipe_uid=".$recipe[0]);
 							$row = $result->fetch_row();  
 							$prdIndex=0;
+							$prdIndexU=9;//indice usato per update
 								                          
                             while ( $row != null ) {
                             ?>
                         	<tr>
 	                            <td>
 	                            	<?php echo $row[1]; ?>
-               					 	<input type="hidden" name="prd_uid<?php echo $prdIndex;?>" class="form-control" value="<?php echo $row[0]; ?>">
+               					 	<input type="hidden" name="product<?php echo $prdIndex.$prdIndexU;?>" class="form-control" value="<?php echo $row[0]; ?>">
                					</td>
 	                            <td>
-	                            	<input name="quantity<?php echo $prdIndex;?>" class="form-control" required value="<?php echo $row[2]; ?>">
+	                            	<input name="quantity<?php echo $prdIndex.$prdIndexU;?>" class="form-control" required value="<?php echo $row[2]; ?>">
 	                            </td>
-								<td>
+								<td width="100px">
 	                            	<?php echo $row[3]; ?>
-								</td>
-	                            <td>
-									<a href="index.php?p=update&uid=<?php echo $row[0]; ?>&type=prd"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+									<a href="index.php?p=update&uid=<?php echo $row[0]; ?>&type=prd"><span style="float:right;"class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+								    <a href="action/delete.php?uid=<?php echo $uid; ?>&type=<?php echo $type; ?>&prd_uid=<?php echo $row[0];?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 								</td>
 	                        </tr>
                             <?php
 								$row = $result->fetch_row();
 								$prdIndex++;
+								$prdIndexU++;
                             }
                     ?>
                     	</tbody>
-                    </table>              
+                    </table>
+                    <?php
+                        include "utils/multipleProductsControl.php";
+                    ?>
+                    <div name="otherIng"></div>
+                         <p>New ingredient: <a onclick="addRow(document.getElementsByName('rowIng')[0].innerHTML)"><span class="glyphicon glyphicon-plus"></span></a></p>
 					<?php
 					}
 				?>
